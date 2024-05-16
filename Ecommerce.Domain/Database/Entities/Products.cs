@@ -1,8 +1,9 @@
-﻿using Ecommerce.Domain.Enum;
+﻿using Ecommerce.Domain.Database.Base;
+using Ecommerce.Domain.Enum;
 
 namespace Ecommerce.Domain.Database.Entities
 {
-    public class Products
+    public class Products : EntityBase
     {
         public Guid ID { get; set; }
         public Guid ProductTypeID { get; set; }
@@ -11,13 +12,7 @@ namespace Ecommerce.Domain.Database.Entities
         public decimal Price { get; set; }
         public List<string> Images { get; set; } = new List<string>();
         public ProductStatus Status { get; set; } = ProductStatus.Still;
-        public DateTimeOffset CreatedTime { get; set; } = DateTimeOffset.Now;
-        public Guid? CreatedBy { get; set; }
-        public DateTimeOffset ModifiedTime { get; set; } = DateTimeOffset.Now;
-        public Guid? ModifiedBy { get; set; }
-        public bool? Deleted { get; set; }
-        public Guid? DeletedBy { get; set; }
-        public DateTimeOffset DeletedTime { get; set; } = DateTimeOffset.Now;
+
 
         // khóa  ngoại 
         public virtual ICollection<SaleDetails>? SaleDetails { get; set; }

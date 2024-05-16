@@ -14,7 +14,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.HasKey(x => x.ID);
             builder.Property(x => x.ID).ValueGeneratedOnAdd();
             builder.Property(x => x.NameProduct).HasMaxLength(50).IsFixedLength().IsUnicode(true);
-            builder.Property(x => x.DescriptionProduct).IsFixedLength().IsUnicode(true);
+            builder.Property(x => x.DescriptionProduct).IsFixedLength().HasMaxLength(256).IsUnicode(true);
             builder.Property(x => x.Price).HasDefaultValue(0);
             builder.Property(x => x.Images).HasConversion(
                v => JsonConvert.SerializeObject(v),
