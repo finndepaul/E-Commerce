@@ -6,7 +6,6 @@ namespace Ecommerce.Domain.Database.Entities
     public class Bills : EntityBase
     {
         public Guid Id { get; set; }
-        public Guid UserID { get; set; }
         public DateTime SoldDate { get; set; } = DateTime.Now;
         public decimal TotalMoney { get; set; }
         public EntityStatus Status { get; set; } = EntityStatus.Active;

@@ -6,7 +6,6 @@ namespace Ecommerce.Domain.Database.Entities
     public class Carts : EntityBase
     {
         public Guid Id { get; set; }
-        public Guid UserID { get; set; }
         public decimal TotalMoney { get; set; } // Tổng tiền toàn bộ giỏ hàng 
         public EntityStatus Status { get; set; } = EntityStatus.Active;
       
