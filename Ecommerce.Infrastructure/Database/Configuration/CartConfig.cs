@@ -11,7 +11,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.TotalMoney).HasDefaultValue(0);
-            builder.HasOne(x => x.Users).WithOne(x => x.Carts).HasForeignKey<Carts>(x => x.UserID).IsRequired();
+            builder.HasOne(x => x.Users).WithOne(x => x.Carts).HasForeignKey<Carts>(x => x.CreatedBy).IsRequired();
         }
     }
 }

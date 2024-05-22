@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <Folder Include="DataTransferObj\User\" />
-    <Folder Include="Interface\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.Domain\Ecommerce.Domain.csproj" />
   </ItemGroup>
 
 </Project>

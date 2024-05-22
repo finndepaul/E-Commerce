@@ -4,6 +4,7 @@ using Ecommerce.Infrastructure.Database.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(WebBanHangContext))]
-    partial class WebBanHangContextModelSnapshot : ModelSnapshot
+    [Migration("20240514100455_c")]
+    partial class c
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +59,12 @@ namespace Ecommerce.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedBy");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Address", (string)null);
                 });
@@ -154,9 +160,12 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<decimal>("TotalMoney")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedBy");
+                    b.HasIndex("UserID");
 
                     b.ToTable("Bill", (string)null);
                 });
@@ -223,7 +232,6 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CreatedBy")
-                        .IsRequired()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTimeOffset>("CreatedTime")
@@ -252,9 +260,12 @@ namespace Ecommerce.Infrastructure.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasDefaultValue(0m);
 
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedBy")
+                    b.HasIndex("UserID")
                         .IsUnique();
 
                     b.ToTable("Cart");
@@ -377,11 +388,14 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<Guid>("ProductID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("ID");
 
-                    b.HasIndex("CreatedBy");
-
                     b.HasIndex("ProductID");
+
+                    b.HasIndex("UserID");
 
                     b.ToTable("OrderDetails");
                 });
@@ -524,7 +538,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2155), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8874), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -534,7 +548,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("e701de07-7b1e-4d47-88fc-fa9ddf9457d9"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2160), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8883), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -607,7 +621,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("e5512865-9aab-437e-a28d-db8db44c6ea1"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2184), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8932), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionProduct = "Ngon",
@@ -621,7 +635,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("db904ad3-02e7-444b-8595-9305638894ec"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2193), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8952), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionProduct = "Ngon",
@@ -679,7 +693,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("25d7afcb-949b-4717-a961-b50f2e18657d"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(1572), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8159), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -689,7 +703,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("ba820c64-1a81-4c44-80ea-47038c930c3b"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(1616), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8208), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -923,8 +937,8 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("97fe4b79-5001-495a-ad9b-6aa6e90698bd"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(1688), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("8df1b5e3-4a33-4090-b4e9-4fb2ac736555"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8296), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "azusachan309@gmail.com",
@@ -938,8 +952,8 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            ID = new Guid("c682e375-071f-43e5-a588-13906140fbce"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2010), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("9b190348-628e-4299-8f33-3b0a6173a3bf"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8688), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "trongnvph35790@fpt.edu.vn",
@@ -953,11 +967,11 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            ID = new Guid("d31e7cf7-61a3-4b07-8600-6c54b7c0fe87"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2032), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("7e21916f-4408-4542-85a9-187df2eef266"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8714), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Email = "thendph35306@fpt.edu.vn",
+                            Email = "trongnvph35790@fpt.edu.vn",
                             FullName = "Nguyen Dinh The",
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Password = "LK25tQh1RqkKbrq4C2l6fw==",
@@ -968,8 +982,8 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            ID = new Guid("855652eb-1866-4b7d-be81-77d1a0d9fd9f"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2050), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("67d2f910-0201-4bfd-beb7-b79e5bf36456"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8735), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "dongbdph35416@fpt.edu.vn",
@@ -983,11 +997,11 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            ID = new Guid("69349e97-5ae7-4a1b-99c5-5a95626e01a4"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2073), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("d6f842ef-5478-41c4-9c90-14551a03b5e3"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8752), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Email = "phongdxph35748@fpt.edu.vn",
+                            Email = "trongnvph35790@fpt.edu.vn",
                             FullName = "Xuan Phong",
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Password = "LK25tQh1RqkKbrq4C2l6fw==",
@@ -998,11 +1012,11 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            ID = new Guid("788351d7-7332-4fb2-a9ed-4672cd5414fe"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 21, 23, 6, 43, 340, DateTimeKind.Unspecified).AddTicks(2091), new TimeSpan(0, 7, 0, 0, 0)),
+                            ID = new Guid("5ffb22ad-084f-4c43-ba0c-093ee998b4f7"),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 5, 14, 17, 4, 54, 970, DateTimeKind.Unspecified).AddTicks(8780), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Email = "hoangpkph38105@fpt.edu.vn",
+                            Email = "trongnvph35790@fpt.edu.vn",
                             FullName = "Hoang",
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Password = "LK25tQh1RqkKbrq4C2l6fw==",
@@ -1162,7 +1176,9 @@ namespace Ecommerce.Infrastructure.Migrations
                 {
                     b.HasOne("Ecommerce.Domain.Database.Entities.Users", "User")
                         .WithMany("Addresses")
-                        .HasForeignKey("CreatedBy");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -1190,7 +1206,9 @@ namespace Ecommerce.Infrastructure.Migrations
                 {
                     b.HasOne("Ecommerce.Domain.Database.Entities.Users", "Users")
                         .WithMany("Bills")
-                        .HasForeignKey("CreatedBy");
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Users");
                 });
@@ -1218,7 +1236,7 @@ namespace Ecommerce.Infrastructure.Migrations
                 {
                     b.HasOne("Ecommerce.Domain.Database.Entities.Users", "Users")
                         .WithOne("Carts")
-                        .HasForeignKey("Ecommerce.Domain.Database.Entities.Carts", "CreatedBy")
+                        .HasForeignKey("Ecommerce.Domain.Database.Entities.Carts", "UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1238,13 +1256,15 @@ namespace Ecommerce.Infrastructure.Migrations
 
             modelBuilder.Entity("Ecommerce.Domain.Database.Entities.OrderDetails", b =>
                 {
-                    b.HasOne("Ecommerce.Domain.Database.Entities.Users", "Users")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("CreatedBy");
-
                     b.HasOne("Ecommerce.Domain.Database.Entities.Products", "Products")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ecommerce.Domain.Database.Entities.Users", "Users")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
