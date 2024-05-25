@@ -10,6 +10,8 @@ namespace Ecommerce.Domain.Database.Entities
         public string FullName { get; set; } = string.Empty;
         public string PhoneNumber { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
+        public string? ConfirmCode { get; set; }
+        public DateTimeOffset? SentTime { get; set; }
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public EntityStatus Status { get; set; } = EntityStatus.Active;
