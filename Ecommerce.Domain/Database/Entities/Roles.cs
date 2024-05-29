@@ -11,7 +11,7 @@ namespace Ecommerce.Domain.Database.Entities
     
 
         // ForeignKey
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<RoleUser>? RoleUsers { get; set; }
 
     }
 }
