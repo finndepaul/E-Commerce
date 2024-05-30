@@ -13,6 +13,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.Property(x => x.Id).ValueGeneratedOnAdd(); // tự gen id
                                                                // foreignKey
             builder.HasOne(x => x.Users).WithMany(x => x.Bills).HasForeignKey(x => x.CreatedBy);
+            //builder.HasOne(x => x.Shops).WithMany(x => x.Bills).HasForeignKey(x => x.ShopId);
             builder.Property(x => x.SoldDate).HasColumnName("SoldDate");
         }
     }
