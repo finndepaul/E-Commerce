@@ -40,7 +40,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddApplication(); //use automapper
 builder.Services.AddEventBus(builder.Configuration); //use automapper
-builder.Services.AddTransient<IUtilitiesRespository, UserUlititiesRepository>();
+builder.Services.AddTransient<IUtilitiesRespository,UserUlititiesRepository>();
 builder.Services.AddCors(options =>////
 {
     options.AddPolicy("AllowLocalhost",
