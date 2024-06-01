@@ -150,6 +150,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 					FullName = "Client Test",
 					Status = Domain.Enum.EntityStatus.Active,
 					PhoneNumber = "0123456789",
+					
 					}
 			};
             modelBuilder.Entity<Users>(b => { b.HasData(userData); });
