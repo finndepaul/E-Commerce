@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Infrastructure.Implement
 {
-	public class LoginRepository : IUserRespository
+	public class LoginRepository 
 	{
 		public Task<bool> BanAcc(Guid id, CancellationToken cancellationToken)
 		{
