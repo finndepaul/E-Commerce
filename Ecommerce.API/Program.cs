@@ -2,6 +2,7 @@ using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Extention;
 using Ecommerce.Infrastructure.Implement.Ulitities;
+using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Configuration;
@@ -21,7 +22,11 @@ builder.Services.AddDbContext<WebBanHangContext>(options =>
 
 
 builder.Services.AddApplication(); //use automapper
+
+// DI
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUtilitiesRespository,UserUlititiesRepository>();
+
 builder.Services.AddCors(options =>////
 {
     options.AddPolicy("AllowLocalhost",
@@ -32,6 +37,9 @@ builder.Services.AddCors(options =>////
                    .AllowAnyHeader();
         });
 });
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
