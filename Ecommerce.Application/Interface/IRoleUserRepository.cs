@@ -1,5 +1,5 @@
 ﻿using Ecommerce.Application.DataTransferObj.Example;
-using Ecommerce.Application.DataTransferObj.RoleUser;
+using Ecommerce.Application.DataTransferObj.IRoleUser;
 using Ecommerce.Application.ValueObj.Pagination;
 using Ecommerce.Domain.Database.Entities;
 using System;
@@ -14,5 +14,8 @@ namespace Ecommerce.Application.Interface
     {
         Task<PaginationResponse<RoleUserDTO>> GetAll(ViewRoleUserRequest request, CancellationToken cancellationToken);
         Task<bool> Create(RoleUser request, CancellationToken cancellationToken);
+        Task<bool> Update(RoleUser request, CancellationToken cancellationToken);
+        Task<bool> Delete(RoleUser request, CancellationToken cancellationToken);
+      
     }
 }

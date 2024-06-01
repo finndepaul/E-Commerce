@@ -1,6 +1,6 @@
 ﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Implement;
-using Ecommerce.Infrastructure.Implement.RoleUser;
+using Ecommerce.Infrastructure.Implement.RoleUserRepo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

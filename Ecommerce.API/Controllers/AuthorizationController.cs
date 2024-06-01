@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Ecommerce.Application.DataTransferObj.RoleUser;
+using Ecommerce.Application.DataTransferObj.IRoleUser;
 using Ecommerce.Application.Interface;
 using Ecommerce.Domain.Database.Entities;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +28,18 @@ namespace Ecommerce.API.Controllers
         public async Task<IActionResult> Post([FromBody]RoleUserCreateRequest request, CancellationToken cancellationToken)
         {
             var result = await _repo.Create(_map.Map<RoleUser>(request), cancellationToken);
+            return Ok(result);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody]RoleUserUpdateRequest request, CancellationToken cancellationToken)
+        {
+            var result = await _repo.Update(_map.Map<RoleUser>(request), cancellationToken);
+            return Ok(result);
+        } 
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody]RoleUserDeleteRequest request, CancellationToken cancellationToken)
+        {
+            var result = await _repo.Delete(_map.Map<RoleUser>(request), cancellationToken);
             return Ok(result);
         }
     }

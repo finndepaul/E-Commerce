@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Ecommerce.Application.DataTransferObj.RoleUser;
+using Ecommerce.Application.DataTransferObj.IRoleUser;
 using Ecommerce.Domain.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,8 @@ namespace Ecommerce.Infrastructure.Extention.AutoMapperProfile
         public RoleUserProfile()
         {
             CreateMap<RoleUserCreateRequest, RoleUser>();
+            CreateMap<RoleUserUpdateRequest, RoleUser>();
+            CreateMap<RoleUserDeleteRequest, RoleUser>();
             CreateMap<RoleUserDTO, RoleUser>().ReverseMap();
             
         }

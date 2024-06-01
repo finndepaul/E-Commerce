@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Application.DataTransferObj.RoleUser
+namespace Ecommerce.Application.DataTransferObj.IRoleUser
 {
     public class RoleUserCreateRequest
     {
-        public Guid CreateBy { get; set; }
+        public Guid CreatedBy { get; set; }
         public Guid RoleId { get; set; }
     }
 }
