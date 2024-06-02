@@ -21,7 +21,7 @@ namespace Ecommerce.API.Controllers
 			_configuration = configuration;
 			
 		}
-
+		[HttpPost("login")]
 		public async Task<IActionResult> Login(LoginRequest request)
 		{
 			if (request.IsValid())
