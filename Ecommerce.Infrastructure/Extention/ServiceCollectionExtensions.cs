@@ -1,17 +1,18 @@
 ﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Implement;
-using Microsoft.EntityFrameworkCore;
+using Ecommerce.Infrastructure.Implement.RoleUserRepo;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BaseSolution.Infrastructure.Extensions
+namespace Ecommerce.Infrastructure.Extention
 {
     public static class ServiceCollectionExtensions
     {
         public static IServiceCollection AddEventBus(this IServiceCollection services, IConfiguration configuration)
         {
-			services.AddTransient<IExampleRepository, ExampleRepository>();
-			return services;
+            services.AddTransient<IExampleRepository, ExampleRepository>();
+            services.AddTransient<IRoleUserRepository, RoleUserRepository>();
+            return services;
         }
     }
 }

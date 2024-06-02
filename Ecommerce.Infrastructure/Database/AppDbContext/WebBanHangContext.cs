@@ -39,11 +39,12 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         public DbSet<Example> Examples { get; set; }
         #endregion
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
-            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
-        }
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+			//optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+		}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -133,26 +134,27 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 },  new Users {
                      ID = Guid.Parse("3e51f9f1-ae83-4b66-b79f-5eb8f32d2075"),
                     CreatedTime = DateTimeOffset.Now,
-                    Username = "Hoang",
-                    Email = "hoangpkph38105@fpt.edu.vn",
-                    Password = Hash.EncryptPassword("abc123"),
-                    FullName = "Hoang",
-                    Status = Domain.Enum.EntityStatus.Active,
-                    PhoneNumber = "0123456789",
 
-                },
-                 new Users {
-                    ID = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                    CreatedTime = DateTimeOffset.Now,
-                    Username = "client",
-                    Email = "azusachan307@gmail.com",
-                    Password = Hash.EncryptPassword("abc123"),
-                    FullName = "Client Test",
-                    Status = Domain.Enum.EntityStatus.Active,
-                    PhoneNumber = "0123456789",
-
-                    }
-            };
+					Username = "Hoang",
+					Email = "hoangpkph38105@fpt.edu.vn",
+					Password = Hash.EncryptPassword("abc123"),
+					FullName = "Hoang",
+					Status = Domain.Enum.EntityStatus.Active,
+					PhoneNumber = "0123456789",
+				
+				},
+				 new Users {
+					ID = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
+					CreatedTime = DateTimeOffset.Now,
+					Username = "client",
+					Email = "azusachan307@gmail.com",
+					Password = Hash.EncryptPassword("abc123"),
+					FullName = "Client Test",
+					Status = Domain.Enum.EntityStatus.Active,
+					PhoneNumber = "0123456789",
+					
+					}
+			};
             modelBuilder.Entity<Users>(b => { b.HasData(userData); });
             var roleUserData = new List<RoleUser>
             {
