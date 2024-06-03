@@ -12,6 +12,7 @@ namespace Ecommerce.Domain.Database.Entities
         public string? DescriptionProduct { get; set; } // mô tả
         public decimal Price { get; set; }
         public List<string> Images { get; set; } = new List<string>();
+        public int Quantity { get; set; }
         public ProductStatus Status { get; set; } = ProductStatus.Still;
 
 
