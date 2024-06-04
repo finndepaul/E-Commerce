@@ -253,6 +253,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 Status = Domain.Enum.EntityStatus.Active,
                 TotalMoney = 0,
 
+
             };
             modelBuilder.Entity<Carts>(b => { b.HasData(cartData); });
             var addressData = new List<Address>()
@@ -318,6 +319,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                     NameProduct = "Kẹo ChupaChup",
                     ProductTypeID = Guid.Parse("e701de07-7b1e-4d47-88fc-fa9ddf9457d9"),
                     ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a"),
+
                 },
             };
             modelBuilder.Entity<Products>(b => { b.HasData(productData); });
