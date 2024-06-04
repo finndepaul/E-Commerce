@@ -1,4 +1,5 @@
-﻿using Ecommerce.Domain.Enum;
+﻿using Ecommerce.Application.ValueObj.Pagination;
+using Ecommerce.Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.DataTransferObj.ProductType
 {
-    public class ProductTypeDTO
+    public class ViewProductTypeRequest :PaginationRequest
     {
         public string ProductsTypeName { get; set; }
-        public EntityStatus Status { get; set; } 
-
     }
 }

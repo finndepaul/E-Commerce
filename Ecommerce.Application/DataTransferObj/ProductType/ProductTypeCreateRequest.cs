@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.DataTransferObj.ProductType
 {
-    public class ProductTypeDTO
+    public class ProductTypeCreateRequest
     {
-        public string ProductsTypeName { get; set; }
+        public Guid ID { get; set; }
+        public string ProductsTypeName { get; set; } 
         public EntityStatus Status { get; set; } 
 
     }

@@ -13,7 +13,7 @@ namespace Ecommerce.Application.DataTransferObj.Products
         public string DescriptionProduct { get; set; }
         public decimal Price { get; set; }  
         public List<string> Images { get; set; }
-
+        public int Quantity { get; set; }
         public string ProductsTypeName { get; set; }
         public string ShopName { get; set; }
         public ProductStatus Status { get; set; } 
