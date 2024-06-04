@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Application.DataTransferObj.Example
+namespace Ecommerce.Domain.Enum
 {
-    public class ExampleCreateRequest
+    public enum ErrorMessage
     {
-        public string? Name { get; set; }
+        Successfull = 1,
+        Faild = 2,
+        Null = 3,
     }
 }

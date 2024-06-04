@@ -1,6 +1,8 @@
 using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Extention;
+using Ecommerce.Infrastructure.Implement.Products;
+using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -41,6 +43,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddApplication(); //use automapper
 builder.Services.AddEventBus(builder.Configuration); //use automapper
 builder.Services.AddTransient<IUtilitiesRespository,UserUlititiesRepository>();
+builder.Services.AddTransient<IProductRespository, ProductRespository>();
+builder.Services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
 builder.Services.AddCors(options =>////
 {
     options.AddPolicy("AllowLocalhost",
