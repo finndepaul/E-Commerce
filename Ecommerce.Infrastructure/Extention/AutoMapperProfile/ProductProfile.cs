@@ -15,7 +15,9 @@ namespace Ecommerce.Infrastructure.Extention.AutoMapperProfile
         {
 
             CreateMap<ProductCreateRequest, Products>();
-            CreateMap<Products,ProductDTO>();
+            CreateMap<Products,ProductDTO>().ReverseMap();
+            CreateMap<ProductUpdateRequest, Products>();
+            CreateMap<ProductDeleteRequest, Products>();
         }
         
     }

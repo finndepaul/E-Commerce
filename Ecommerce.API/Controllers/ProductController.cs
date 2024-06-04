@@ -18,17 +18,19 @@ namespace Ecommerce.API.Controllers
             _reps = reps;
             _mapper = mapper;
         }
-        //public async Task<IActionResult> Get([FromBody]ProductDTO product, CancellationToken cancellationToken)
-        //{
-        //    var result = _reps(product,cancellationToken);
-        //}
+        [HttpGet("getall-product")]
+        public async Task<IActionResult> Get([FromQuery] ViewProductRequest product, CancellationToken cancellationToken)
+        {
+            var result = await _reps.GetAll(product, cancellationToken);
+            return Ok(result);
+        }
         [HttpPost("create-product")]
         public async Task<IActionResult> Create([FromBody]ProductCreateRequest product, CancellationToken cancellationToken)
         {
             try
             {
-                var obj = await _reps.CreateProduct(_mapper.Map<Products>(product),cancellationToken);
-                return Ok(obj);
+                var result  = await _reps.CreateProduct(_mapper.Map<Products>(product),cancellationToken);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -36,9 +38,29 @@ namespace Ecommerce.API.Controllers
             }
         }
         [HttpPut("update-product")]
-        public async Task<IActionResult> Update()
+        public async Task<IActionResult> Update([FromBody]ProductUpdateRequest product, CancellationToken cancellationToken)
         {
-            return Ok();
+            try
+            {
+                var result = await _reps.UpdateProduct(_mapper.Map<Products>(product), cancellationToken);
+                return Ok(result);
+            }
+            catch (Exception ex) { 
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromBody]ProductDeleteRequest product, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var result = await _reps.DeleteProduct(_mapper.Map<Products>(product), cancellationToken);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
         }
     }
 }

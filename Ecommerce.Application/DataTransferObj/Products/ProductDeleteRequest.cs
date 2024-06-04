@@ -1,5 +1,4 @@
-﻿using Ecommerce.Application.ValueObj.Pagination;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.DataTransferObj.Products
 {
-    public class ViewProductRequest : PaginationRequest
+    public class ProductDeleteRequest
     {
-        public string? NameProduct { get; set; }
+        public Guid ID { get; set; }
+        public Guid? DeletedBy { get; set; }
+
     }
 }
