@@ -68,7 +68,7 @@ namespace Ecommerce.Infrastructure.Implement.Products
                 obj.Status = Domain.Enum.ProductStatus.Out; 
                 obj.DeletedTime = DateTimeOffset.Now;
                 obj.Deleted = true;
-
+                
                 _db.Product.Update(obj);
                 await _db.SaveChangesAsync(cancellationToken);
                 return true;    
@@ -87,19 +87,19 @@ namespace Ecommerce.Infrastructure.Implement.Products
             {
                 query = query.Where(x => x.NameProduct == request.NameProduct);
             }
-            var result = await query.PaginateAsync< Ecommerce.Domain.Database.Entities.Products, ProductDTO>(request, _mapper, cancellationToken);
-            result.Data = (from item in query
-                           select new ProductDTO
-                           {
-                               ProductsTypeName = item.ProductTypes.ProductsTypeName,
-                               ShopName = item.Shops.ShopName,
-                               Images = item.Images,
-                               Price = item.Price,
-                               NameProduct = item.NameProduct,
-                               DescriptionProduct = item.DescriptionProduct,
-                               Status = item.Status,
-                           }
-                           ).ToList();
+                var result = await query.PaginateAsync< Ecommerce.Domain.Database.Entities.Products, ProductDTO>(request, _mapper, cancellationToken);
+                result.Data = (from item in query
+                               select new ProductDTO
+                               {
+                                   ProductsTypeName = item.ProductTypes.ProductsTypeName,
+                                   ShopName = item.Shops.ShopName,  
+                                   Images = item.Images,
+                                   Price = item.Price,
+                                   NameProduct = item.NameProduct,
+                                   DescriptionProduct = item.DescriptionProduct,
+                                   Status = item.Status,
+                               }
+                               ).ToList();
             return new PaginationResponse<ProductDTO>()
             {
                 HasNext = result.HasNext,
@@ -120,16 +120,13 @@ namespace Ecommerce.Infrastructure.Implement.Products
                     {
                         return false;
                     }
-                    if (obj.Images == null)
-                    {
-                        return false;
-                    }
+          
                     obj.NameProduct = products.NameProduct;
                     obj.DescriptionProduct = products.DescriptionProduct;
                     obj.Status = products.Status;
                     obj.Images = products.Images;
                     obj.Price = products.Price;
-                    
+                    obj.Quantity = products.Quantity;
                     _db.Product.Update(obj);
                     await _db.SaveChangesAsync();
                     return true;

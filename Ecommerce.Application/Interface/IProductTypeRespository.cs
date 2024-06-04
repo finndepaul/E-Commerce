@@ -12,9 +12,9 @@ namespace Ecommerce.Application.Interface
 {
     public interface IProductTypeRespository
     {
-        Task<PaginationResponse<ProductTypeDTO>> GetAll( CancellationToken cancellationToken);
+        Task<PaginationResponse<ProductTypeDTO>> GetAll(ViewProductTypeRequest viewProductTypeRequest, CancellationToken cancellationToken);
         Task<bool> CreateProduct(ProductTypes productsType, CancellationToken cancellationToken);
-        Task<bool> UpdateProduct(Guid id, CancellationToken cancellationToken);
-        Task<bool> DeleteProduct(Guid id, CancellationToken cancellationToken);
+        Task<bool> UpdateProduct(ProductTypes productTypes, CancellationToken cancellationToken);
+        Task<bool> DeleteProduct(ProductTypes productTypes, CancellationToken cancellationToken);
     }
 }
