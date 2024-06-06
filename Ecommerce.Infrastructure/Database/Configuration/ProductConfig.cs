@@ -20,6 +20,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
                v => JsonConvert.SerializeObject(v),
                v => JsonConvert.DeserializeObject<List<string>>(v));
             builder.HasOne(x => x.ProductTypes).WithMany(x => x.Product).HasForeignKey(x => x.ProductTypeID);
+            builder.HasOne(x => x.Shops).WithMany(x => x.Products).HasForeignKey(x => x.ShopId);
         }
     }
 }

@@ -16,8 +16,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.Property(x => x.Email).HasMaxLength(50).IsFixedLength();
             builder.Property(x => x.Username).HasMaxLength(50).IsFixedLength();
             builder.Property(x => x.Password).HasMaxLength(50).IsFixedLength();
-            builder.HasOne(x => x.Roles).WithMany(x => x.Users).HasForeignKey(x => x.RoleID);
-
+          
         }
     }
 }
