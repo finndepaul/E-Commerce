@@ -4,6 +4,7 @@ using Ecommerce.Infrastructure.Extention;
 using Ecommerce.Infrastructure.Implement.Products;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
+using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -18,11 +19,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<WebBanHangContext>(options =>
-{
-    // Configure your DbContext options here
-    options.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
-});
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -42,9 +38,6 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddApplication(); //use automapper
 builder.Services.AddEventBus(builder.Configuration); //use automapper
-builder.Services.AddTransient<IUtilitiesRespository,UserUlititiesRepository>();
-builder.Services.AddTransient<IProductRespository, ProductRespository>();
-builder.Services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
 builder.Services.AddCors(options =>////
 {
     options.AddPolicy("AllowLocalhost",

@@ -9,8 +9,10 @@ namespace Ecommerce.Application.DataTransferObj.IRoleUser
 {
     public class RoleUserDTO
     {
-        public string UserName { get; set; }
+        public Guid Id { get; set; } 
+        public string UserName { get; set; } 
         public string RoleName { get; set; }
+        public DateTimeOffset CreatedTime { get; set; }
         public EntityStatus Status { get; set; }
     }
 }
