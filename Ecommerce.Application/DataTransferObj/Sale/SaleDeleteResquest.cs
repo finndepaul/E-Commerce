@@ -5,13 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecommerce.Application.DataTransferObj.ProductType
+namespace Ecommerce.Application.DataTransferObj.Sale
 {
-    public class ProductTypeDTO
+    public class SaleDeleteResquest
     {
         public Guid ID { get; set; }
-        public string ProductsTypeName { get; set; }
-        public EntityStatus Status { get; set; } 
+        public Guid DeletedBy { get; set; }
 
     }
 }

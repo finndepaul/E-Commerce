@@ -4,6 +4,7 @@ using Ecommerce.Infrastructure.Implement;
 using Ecommerce.Infrastructure.Implement.Products;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.RoleUserRepo;
+using Ecommerce.Infrastructure.Implement.Sale;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,9 @@ namespace Ecommerce.Infrastructure.Extention
         {
             services.AddDbContext<WebBanHangContext>(options =>
             {
+                
                 // Configure your DbContext options here
-                options.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
+                options.UseSqlServer("Data Source=vantrong\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
             });
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IRoleUserRepository, RoleUserRepository>(); 
@@ -27,6 +29,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<IProductRespository, ProductRespository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
+            services.AddTransient<ISalesRespository, SaleRespository>();
             return services;
         }
     }

@@ -27,6 +27,10 @@ namespace Ecommerce.Infrastructure.Implement.User
         {
             try
             {
+                if (users.Username != null || users.Email != null) 
+                {
+                    return ErrorMessage.Faild;
+                }
                 users.Password = Hash.EncryptPassword(users.Password); // mã hóa pass
                 users.Status = EntityStatus.Active;
                 users.CreatedTime = DateTimeOffset.Now; // đầy đủ thông tin thời gian
