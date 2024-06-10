@@ -88,16 +88,18 @@ namespace Ecommerce.Infrastructure.Implement.Products
                 query = query.Where(x => x.NameProduct == request.NameProduct);
             }
                 var result = await query.PaginateAsync< Ecommerce.Domain.Database.Entities.Products, ProductDTO>(request, _mapper, cancellationToken);
-                result.Data = (from item in query
+                result.Data = (from x in result.Data
+                               join p in query on x.ID equals p.ID
+                               orderby p.CreatedTime descending
                                select new ProductDTO
                                {
-                                   ProductsTypeName = item.ProductTypes.ProductsTypeName,
-                                   ShopName = item.Shops.ShopName,  
-                                   Images = item.Images,
-                                   Price = item.Price,
-                                   NameProduct = item.NameProduct,
-                                   DescriptionProduct = item.DescriptionProduct,
-                                   Status = item.Status,
+                                   ProductsTypeName = p.ProductTypes.ProductsTypeName,
+                                   ShopName = p.Shops.ShopName,  
+                                   Images = p.Images,
+                                   Price = p.Price,
+                                   NameProduct = p.NameProduct,
+                                   DescriptionProduct = p.DescriptionProduct,
+                                   Status = p.Status,
                                }
                                ).ToList();
             return new PaginationResponse<ProductDTO>()

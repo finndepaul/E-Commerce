@@ -28,8 +28,14 @@ namespace Ecommerce.API.Controllers
             }
             else
             {
-                await _userRepository.Register(_mapper.Map<Users>(userCreateRequest), cancellationToken);
-                return Ok("Them thanh cong!!!");
+
+               var result=   await _userRepository.Register(_mapper.Map<Users>(userCreateRequest), cancellationToken);
+                if(result == Domain.Enum.ErrorMessage.Successfull)
+                return Ok("thêm thành công");
+                else
+                {
+                    return Ok("Email hoặc UserName đã tồn tại");
+                }
             }
         }
     }
