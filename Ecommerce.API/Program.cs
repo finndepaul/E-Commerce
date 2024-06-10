@@ -4,7 +4,7 @@ using Ecommerce.Infrastructure.Extention;
 using Ecommerce.Infrastructure.Extention.AutoMapperProfile;
 using Ecommerce.Infrastructure.Implement.Carts;
 using Ecommerce.Infrastructure.Implement.OrderResponsitory;
-using Ecommerce.Infrastructure.Implement.Products;
+using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Ecommerce.Infrastructure.Implement.User;
