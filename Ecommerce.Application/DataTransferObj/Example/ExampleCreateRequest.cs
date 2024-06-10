@@ -8,6 +8,6 @@ namespace Ecommerce.Application.DataTransferObj.Example
 {
     public class ExampleCreateRequest
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
 }

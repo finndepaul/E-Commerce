@@ -12,7 +12,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.UserAddress).IsRequired();
-            builder.HasOne(x => x.User).WithMany(x => x.Addresses).HasForeignKey(x => x.UserId);
+            builder.HasOne(x => x.User).WithMany(x => x.Addresses).HasForeignKey(x => x.CreatedBy);
 
         }
     }
