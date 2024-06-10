@@ -299,7 +299,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                         "image1.jpg","image2.jpg"
                     },
                     Price = 20000,
-                    Status = Domain.Enum.ProductStatus.Still,
+                    Status = Domain.Enum.ProductStatus.Approved,
                     DescriptionProduct = "Ngon",
                     NameProduct = "Bánh Oreon",
                     ProductTypeID = Guid.Parse("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
@@ -314,7 +314,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                         "image3.jpg","image4.jpg"
                     },
                     Price = 20000,
-                    Status = Domain.Enum.ProductStatus.Still,
+                    Status = Domain.Enum.ProductStatus.Waiting,
                     DescriptionProduct = "Ngon",
                     NameProduct = "Kẹo ChupaChup",
                     ProductTypeID = Guid.Parse("e701de07-7b1e-4d47-88fc-fa9ddf9457d9"),

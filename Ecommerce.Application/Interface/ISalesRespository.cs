@@ -12,8 +12,8 @@ namespace Ecommerce.Application.Interface
     public interface ISalesRespository
     {
         Task<PaginationResponse<SalesDTO>> GetAll(ViewSaleResquest resquest,CancellationToken cancellationToken);
-        Task<bool> CreateSale(Sales sale,CancellationToken cancellationToken);
-        Task<bool> UpdateSale(Sales sale,CancellationToken cancellationToken);
-        Task<bool> DeleteSale(Sales sale,CancellationToken cancellationToken);
+        Task<bool> CreateSale(Sales sale,Users id,CancellationToken cancellationToken);
+        Task<bool> UpdateSale(Sales sale, Users id,CancellationToken cancellationToken);
+        Task<bool> DeleteSale(Sales sale, Users id, CancellationToken cancellationToken);
     }
 }
