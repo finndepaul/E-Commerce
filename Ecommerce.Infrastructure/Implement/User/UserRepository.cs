@@ -1,4 +1,5 @@
-﻿using Ecommerce.Application.Interface;
+﻿using AutoMapper;
+using Ecommerce.Application.Interface;
 using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
 using Ecommerce.Infrastructure.Database.AppDbContext;
@@ -15,12 +16,13 @@ namespace Ecommerce.Infrastructure.Implement.User
     public class UserRepository : IUserRepository
     {
         private readonly WebBanHangContext _context;
-        private readonly RoleUserRepository _roleRepos;     
-
-        public UserRepository(WebBanHangContext context, RoleUserRepository roleRepos)
+        private readonly RoleUserRepository _roleRepos;
+        private readonly IMapper _map;
+        public UserRepository(WebBanHangContext context,IMapper map)
         {
             _context = context;
-            _roleRepos = roleRepos;
+            _roleRepos = new RoleUserRepository(context, map);
+            _map = map;
         }
 
         public async Task<ErrorMessage> Register(Users users, CancellationToken cancellationToken)
@@ -37,7 +39,7 @@ namespace Ecommerce.Infrastructure.Implement.User
                 await _context.User.AddAsync(users);
                 await _context.SaveChangesAsync(cancellationToken);
 
-                var cart = new Carts()
+                var cart = new Domain.Database.Entities.Carts()
                 {
                     Id = users.ID,
                     CreatedBy = users.ID,

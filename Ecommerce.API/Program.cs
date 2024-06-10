@@ -1,11 +1,15 @@
-using Ecommerce.Application.Interface;
+﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Extention;
+using Ecommerce.Infrastructure.Extention.AutoMapperProfile;
+using Ecommerce.Infrastructure.Implement.Carts;
+using Ecommerce.Infrastructure.Implement.OrderResponsitory;
 using Ecommerce.Infrastructure.Implement.Products;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
@@ -33,9 +37,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
         };
     });
-
+// Kích hoạt Swagger để tài liệu API
+builder.Services.AddEndpointsApiExplorer();
+// Đăng ký dịch vụ giỏ hàng
+builder.Services.AddTransient<ICartRepository, CartRepository>();
+builder.Services.AddTransient<IOderDetailRespository,OrderResponsitory >();
 builder.Services.AddAuthorization();
-
+builder.Services.AddAutoMapper(typeof(CartProfile));
 builder.Services.AddApplication(); //use automapper
 builder.Services.AddEventBus(builder.Configuration); //use automapper
 builder.Services.AddCors(options =>////
