@@ -45,7 +45,8 @@ namespace Ecommerce.API.Controllers
                 var result = await _reps.UpdateProduct(_mapper.Map<Products>(product), cancellationToken);
                 return Ok(result);
             }
-            catch (Exception ex) { 
+            catch (Exception ex) 
+            { 
                 return BadRequest(ex.Message);
             }
         }
@@ -62,5 +63,6 @@ namespace Ecommerce.API.Controllers
                 return BadRequest(ex.Message); 
             }
         }
+
     }
 }
