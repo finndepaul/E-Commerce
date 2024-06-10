@@ -11,5 +11,6 @@ namespace Ecommerce.Domain.Enum
         Successfull = 1,
         Faild = 2,
         Null = 3,
+        QuantityExceedsStock 
     }
 }

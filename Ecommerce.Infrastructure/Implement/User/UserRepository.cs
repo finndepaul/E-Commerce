@@ -35,7 +35,7 @@ namespace Ecommerce.Infrastructure.Implement.User
                 await _context.User.AddAsync(users);
                 await _context.SaveChangesAsync(cancellationToken);
 
-                var cart = new Carts()
+                var cart = new Domain.Database.Entities.Carts()
                 {
                     Id = users.ID,
                     CreatedBy = users.ID,
