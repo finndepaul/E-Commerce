@@ -28,7 +28,7 @@ namespace Ecommerce.API.Controllers
             if (cartDetails.Data != null && cartDetails.Data.Count > 0)
                 return Ok(cartDetails);
 
-            return NotFound();
+            return Ok(cartDetails);
         }
 
         [HttpGet("details-cartdetails")]
@@ -48,21 +48,28 @@ namespace Ecommerce.API.Controllers
         [HttpPost("create-cartdetails")]
         public async Task<IActionResult> CreateCartDetail([FromBody] CreateCartDetailRequest request, CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var userId = GetUserIdFromContext(); // Triển khai phương thức này để lấy ID người dùng từ ngữ cảnh
+                var result = await _repo.AddToCart(request, userId, cancellationToken);
+
+                    return Ok(result);
+
+              
             }
+            catch (Exception)
+            {
 
-            var userId = GetUserIdFromContext(); // Triển khai phương thức này để lấy ID người dùng từ ngữ cảnh
-            var result = await _repo.AddToCart(request, userId, cancellationToken);
+                return BadRequest();
+            }
+        
 
-            if (result == ErrorMessage.Successfull)
-                return Ok();
-
-            if (result == ErrorMessage.QuantityExceedsStock)
-                return BadRequest("Số lượng không thỏa mãn");
-
-            return BadRequest();
+            
         }
 
         // Endpoint để cập nhật số lượng của sản phẩm trong giỏ hàng
@@ -71,36 +78,54 @@ namespace Ecommerce.API.Controllers
        
         public async Task<IActionResult> UpdateCartDetail([FromBody] UpdateCartRequest request, CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid)
+
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var userId = GetUserIdFromContext();
+                var result = await _repo.UpdateCartDetail(request, userId, cancellationToken);
+
+               
+                    return Ok();
             }
+            catch (Exception)
+            {
 
-            var userId = GetUserIdFromContext();
-            var result = await _repo.UpdateCartDetail(request, userId, cancellationToken);
+                return BadRequest();
+            }
+            
 
-            if (result == ErrorMessage.Successfull)
-                return Ok();
-
-            return BadRequest();
+           
         }
 
         // Endpoint để xóa sản phẩm khỏi giỏ hàng
         [HttpDelete("remove-cart")]
         public async Task<IActionResult> DeleteCartDetail([FromBody] DeleteCartDetailRequest request, CancellationToken cancellationToken)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                var userId = GetUserIdFromContext();
+                var result = await _repo.RemoveFromCart(request, userId, cancellationToken);
+
+                    return Ok();
             }
+            catch (Exception)
+            {
 
-            var userId = GetUserIdFromContext();
-            var result = await _repo.RemoveFromCart(request, userId, cancellationToken);
+                return BadRequest();
+            }
+            
 
-            if (result == ErrorMessage.Successfull)
-                return Ok();
-
-            return BadRequest();
+            
         }
 
         // Endpoint để lấy chi tiết giỏ hàng của người dùng

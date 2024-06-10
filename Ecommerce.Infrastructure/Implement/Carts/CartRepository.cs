@@ -26,19 +26,19 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             _map = map;
         }
 
-        public async Task<ErrorMessage> AddToCart(CreateCartDetailRequest request, Guid userId, CancellationToken cancellationToken)
+        public async Task<bool> AddToCart(CreateCartDetailRequest request, Guid userId, CancellationToken cancellationToken)
         {
             var cart = await _context.Cart
              .Include(c => c.CartDetails)
              .FirstOrDefaultAsync(c => c.Id == userId && c.Status == EntityStatus.Active, cancellationToken);
 
             if (cart == null)
-                return ErrorMessage.Faild;
+                return false;
 
             var product = await _context.Product.FirstOrDefaultAsync(p => p.ID == request.ProductID, cancellationToken);
 
             if (product == null)
-                return ErrorMessage.Faild;
+                return false;
 
             var existingCartDetail = cart.CartDetails.FirstOrDefault(cd => cd.ProductID == request.ProductID && cd.Status == EntityStatus.Active);
 
@@ -46,7 +46,7 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             {
                 var newTotalQuantity = existingCartDetail.NumberOfProduct + request.NumberOfProduct;
                 if (newTotalQuantity > product.Quantity)
-                    return ErrorMessage.QuantityExceedsStock;
+                    return false;
 
                 existingCartDetail.NumberOfProduct = newTotalQuantity;
                 existingCartDetail.TotalMoney = product.Price * newTotalQuantity;
@@ -58,7 +58,7 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             else
             {
                 if (request.NumberOfProduct > product.Quantity)
-                    return ErrorMessage.QuantityExceedsStock;
+                    return false;
 
                 var cartDetail = new CartDetails
                 {
@@ -77,7 +77,7 @@ namespace Ecommerce.Infrastructure.Implement.Carts
 
             _context.Cart.Update(cart);
             await _context.SaveChangesAsync(cancellationToken);
-            return ErrorMessage.Successfull;
+            return true;
         }
 
 
@@ -120,14 +120,14 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             return cartDetailDto;
         }
 
-        public async Task<ErrorMessage> RemoveFromCart(DeleteCartDetailRequest request, Guid userId, CancellationToken cancellationToken)
+        public async Task<bool> RemoveFromCart(DeleteCartDetailRequest request, Guid userId, CancellationToken cancellationToken)
         {
             var cartDetail = await _context.CartDetail
             .Include(cd => cd.Carts)
             .FirstOrDefaultAsync(cd => cd.Id == request.CartDetailId && cd.Status == EntityStatus.Active, cancellationToken);
 
             if (cartDetail == null || cartDetail.Carts == null || cartDetail.Carts.Id != userId)
-                return ErrorMessage.Faild;
+                return false;
 
             var cart = cartDetail.Carts;
             cart.TotalMoney -= cartDetail.TotalMoney;
@@ -137,22 +137,22 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             _context.Cart.Update(cart);
 
             await _context.SaveChangesAsync(cancellationToken);
-            return ErrorMessage.Successfull;
+            return true;
         }
 
-        public async Task<ErrorMessage> UpdateCartDetail(UpdateCartRequest request, Guid userId, CancellationToken cancellationToken)
+        public async Task<bool> UpdateCartDetail(UpdateCartRequest request, Guid userId, CancellationToken cancellationToken)
         {
             var cartDetail = await _context.CartDetail
             .Include(cd => cd.Carts)
             .FirstOrDefaultAsync(cd => cd.Id == request.CartDetailId && cd.Status == EntityStatus.Active, cancellationToken);
 
             if (cartDetail == null || cartDetail.Carts == null || cartDetail.Carts.Id != userId)
-                return ErrorMessage.Faild;
+                return false;
 
             var product = await _context.Product.FirstOrDefaultAsync(p => p.ID == cartDetail.ProductID, cancellationToken);
 
             if (product == null)
-                return ErrorMessage.Faild;
+                return false;
 
             var oldTotalMoney = cartDetail.TotalMoney;
 
@@ -166,7 +166,7 @@ namespace Ecommerce.Infrastructure.Implement.Carts
             _context.Cart.Update(cart);
 
             await _context.SaveChangesAsync(cancellationToken);
-            return ErrorMessage.Successfull;
+            return true;
         }
     }
 }

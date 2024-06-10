@@ -3,6 +3,7 @@ using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Extention;
 using Ecommerce.Infrastructure.Extention.AutoMapperProfile;
 using Ecommerce.Infrastructure.Implement.Carts;
+using Ecommerce.Infrastructure.Implement.OrderResponsitory;
 using Ecommerce.Infrastructure.Implement.Products;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
@@ -44,6 +45,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddEndpointsApiExplorer();
 // Đăng ký dịch vụ giỏ hàng
 builder.Services.AddTransient<ICartRepository, CartRepository>();
+builder.Services.AddTransient<IOderDetailRespository,OrderResponsitory >();
 builder.Services.AddAuthorization();
 builder.Services.AddAutoMapper(typeof(CartProfile));
 builder.Services.AddApplication(); //use automapper

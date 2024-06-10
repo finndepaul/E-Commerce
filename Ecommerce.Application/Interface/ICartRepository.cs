@@ -15,9 +15,9 @@ namespace Ecommerce.Application.Interface
     {
         Task<PaginationResponse<CartDetailDTO>> GetAllCartDetails(ViewCartDetailRequest request, CancellationToken cancellationToken);
         Task<CartDetailDTO> GetCartDetailById(Guid cartDetailId, CancellationToken cancellationToken);
-        Task<ErrorMessage> AddToCart(CreateCartDetailRequest request, Guid userId, CancellationToken cancellationToken);
-        Task<ErrorMessage> UpdateCartDetail(UpdateCartRequest request, Guid userId, CancellationToken cancellationToken);
-        Task<ErrorMessage> RemoveFromCart(DeleteCartDetailRequest request, Guid userId, CancellationToken cancellationToken);
+        Task<bool> AddToCart(CreateCartDetailRequest request, Guid userId, CancellationToken cancellationToken);
+        Task<bool> UpdateCartDetail(UpdateCartRequest request, Guid userId, CancellationToken cancellationToken);
+        Task<bool> RemoveFromCart(DeleteCartDetailRequest request, Guid userId, CancellationToken cancellationToken);
 
     }
 }
