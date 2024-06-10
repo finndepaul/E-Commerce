@@ -13,7 +13,6 @@ namespace Ecommerce.Infrastructure.Implement.RoleUserRepo
     {
         private readonly WebBanHangContext _db;
         private readonly IMapper _map;
-
         public RoleUserRepository(WebBanHangContext db, IMapper map)
         {
             _db = db;
@@ -56,19 +55,23 @@ namespace Ecommerce.Infrastructure.Implement.RoleUserRepo
             {
                 query = query.Where(x => x.Users.Username == request.SearchName);
             }
-            var result = await query.PaginateAsync<Domain.Database.Entities.RoleUser, RoleUserDTO>(request, _map, cancellationToken);
-            result.Data = (from item in query
-                           select new RoleUserDTO
-                           {
-                               RoleName = item.Roles.RoleName,
-                               UserName = item.Users.Username,
-                               Status = item.Status,
-                           }).ToList();
+            var result = await query.PaginateAsync<RoleUser, RoleUserDTO>(request, _map, cancellationToken);
+            result.Data = (from a in result.Data
+                          join b in query on a.Id equals b.Id
+                          orderby b.CreatedTime descending
+                          select new RoleUserDTO()
+                          {
+                              RoleName = b.Roles.RoleName, 
+                              UserName = b.Users.Username,
+                              Id = b.Id,
+                              Status = b.Status,
+                              CreatedTime = b.CreatedTime,
+                          }).ToList();
             return new PaginationResponse<RoleUserDTO>()
             {
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
                 HasNext = result.HasNext,
-                PageNumber = result.PageNumber,
-                PageSize = result.PageSize,
                 Data = result.Data
             };
         }

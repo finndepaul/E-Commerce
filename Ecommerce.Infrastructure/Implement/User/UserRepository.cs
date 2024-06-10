@@ -1,8 +1,10 @@
-﻿using Ecommerce.Application.Interface;
+﻿using AutoMapper;
+using Ecommerce.Application.Interface;
 using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Extention;
+using Ecommerce.Infrastructure.Implement.RoleUserRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +16,15 @@ namespace Ecommerce.Infrastructure.Implement.User
     public class UserRepository : IUserRepository
     {
         private readonly WebBanHangContext _context;
-        public UserRepository()
+        private readonly RoleUserRepository _roleRepos;
+        private readonly IMapper _map;
+        public UserRepository(WebBanHangContext context,IMapper map)
         {
-            _context = new WebBanHangContext();
+            _context = context;
+            _roleRepos = new RoleUserRepository(context, map);
+            _map = map;
         }
+
         public async Task<ErrorMessage> Register(Users users, CancellationToken cancellationToken)
         {
             try
@@ -28,7 +35,7 @@ namespace Ecommerce.Infrastructure.Implement.User
                 await _context.User.AddAsync(users);
                 await _context.SaveChangesAsync(cancellationToken);
 
-                var cart = new Carts()
+                var cart = new Domain.Database.Entities.Carts()
                 {
                     Id = users.ID,
                     CreatedBy = users.ID,
@@ -36,6 +43,11 @@ namespace Ecommerce.Infrastructure.Implement.User
                     Status = EntityStatus.Active,
                     CreatedTime = DateTimeOffset.Now,
                 };
+                await _roleRepos.Create(new RoleUser()
+                {
+                    RoleId = Guid.Parse("BA820C64-1A81-4C44-80EA-47038C930C3B"),
+                    CreatedBy = users.ID,
+                }, cancellationToken);
                 await _context.Cart.AddAsync(cart);
                 await _context.SaveChangesAsync(cancellationToken);
                 return ErrorMessage.Successfull;
