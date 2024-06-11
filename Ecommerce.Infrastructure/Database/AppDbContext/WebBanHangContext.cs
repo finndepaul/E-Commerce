@@ -40,11 +40,26 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         #endregion
 
 
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-		{
-			optionsBuilder.UseSqlServer("Data Source=vantrong\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
-			//optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
-		}
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Đông
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
+            // Hoàng
+            //optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
+            // Đăng
+            //optionsBuilder.UseSqlServer("Server=SURINRIN\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+
+            // Thế
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
+            // Trọng
+            //optionsBuilder.UseSqlServer("Server=vantrong\SQLEXPRESS;Database=Trong_ph35790;Trusted_Connection=True;TrustServerCertificate=True");
+
+            // Phong
+            //optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -135,26 +150,26 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                      ID = Guid.Parse("3e51f9f1-ae83-4b66-b79f-5eb8f32d2075"),
                     CreatedTime = DateTimeOffset.Now,
 
-					Username = "Hoang",
-					Email = "hoangpkph38105@fpt.edu.vn",
-					Password = Hash.EncryptPassword("abc123"),
-					FullName = "Hoang",
-					Status = Domain.Enum.EntityStatus.Active,
-					PhoneNumber = "0123456789",
-				
-				},
-				 new Users {
-					ID = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-					CreatedTime = DateTimeOffset.Now,
-					Username = "client",
-					Email = "azusachan307@gmail.com",
-					Password = Hash.EncryptPassword("abc123"),
-					FullName = "Client Test",
-					Status = Domain.Enum.EntityStatus.Active,
-					PhoneNumber = "0123456789",
-					
-					}
-			};
+                    Username = "Hoang",
+                    Email = "hoangpkph38105@fpt.edu.vn",
+                    Password = Hash.EncryptPassword("abc123"),
+                    FullName = "Hoang",
+                    Status = Domain.Enum.EntityStatus.Active,
+                    PhoneNumber = "0123456789",
+
+                },
+                 new Users {
+                    ID = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
+                    CreatedTime = DateTimeOffset.Now,
+                    Username = "client",
+                    Email = "azusachan307@gmail.com",
+                    Password = Hash.EncryptPassword("abc123"),
+                    FullName = "Client Test",
+                    Status = Domain.Enum.EntityStatus.Active,
+                    PhoneNumber = "0123456789",
+
+                    }
+            };
             modelBuilder.Entity<Users>(b => { b.HasData(userData); });
             var roleUserData = new List<RoleUser>
             {
@@ -323,6 +338,54 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 },
             };
             modelBuilder.Entity<Products>(b => { b.HasData(productData); });
+            var cartDetailData = new CartDetails()
+            {
+                Id= Guid.NewGuid(),
+                CreatedTime = DateTimeOffset.Now,
+                CartID = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
+                CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
+                NumberOfProduct = 2,
+                Status = Domain.Enum.EntityStatus.Active,
+                TotalMoney = 60000,
+
+            };
+            modelBuilder.Entity<CartDetails>(b => { b.HasData(cartDetailData); });
+            var orderDetailData = new OrderDetails()
+            {
+                ID = Guid.NewGuid(),
+                Price = 60000,
+                NumberOfProduct = 3,
+                CreatedTime = DateTimeOffset.Now,
+                CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
+            };
+            modelBuilder.Entity<OrderDetails>(b => { b.HasData(orderDetailData); });
+            var billData = new Bills()
+            {
+                Id = Guid.Parse("01fa417d-7900-4199-8ad9-cbb397c14235"),
+                ShopId = Guid.Parse("30D26F28-6E0A-4ECD-A5FE-0A683FDFA93A"),
+                TotalMoney = 60000,
+                SoldDate = DateTime.UtcNow,
+                Status = Domain.Enum.EntityStatus.Active,
+                CreatedTime = DateTimeOffset.Now,
+                CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
+
+            };
+            modelBuilder.Entity<Bills>(b => { b.HasData(billData); });
+            var billDetailData = new BillDetails()
+            {
+                ID = Guid.NewGuid(),
+                Price = 60000,
+                BillID = Guid.Parse("01fa417d-7900-4199-8ad9-cbb397c14235"),
+                Status = Domain.Enum.EntityStatus.Active,
+                NumberOfProduct = 3,
+                CreatedTime = DateTimeOffset.Now,
+                CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
+            };
+            modelBuilder.Entity<BillDetails>(b => { b.HasData(billDetailData); });
+
         }
     }
 }

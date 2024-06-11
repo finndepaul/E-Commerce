@@ -84,7 +84,7 @@ namespace Ecommerce.Infrastructure.Implement.Product
             {
                 query = query.Where(x => x.NameProduct == request.NameProduct);
             }
-            if(request.Status == ProductStatus.Waiting)
+            if(request.Status.HasValue)
             {
                 query = query.Where(x => x.Status == request.Status);
             }
