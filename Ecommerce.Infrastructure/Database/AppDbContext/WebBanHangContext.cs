@@ -329,7 +329,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 CreatedTime = DateTimeOffset.Now,
                 CartID = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
                 CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
-                ProductID = Guid.Parse("DB904AD3-02E7-444B-8595-9305638894EC"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
                 NumberOfProduct = 2,
                 Status = Domain.Enum.EntityStatus.Active,
                 TotalMoney = 60000,
@@ -343,14 +343,14 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 NumberOfProduct = 3,
                 CreatedTime = DateTimeOffset.Now,
                 CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
-                ProductID = Guid.Parse("DB904AD3-02E7-444B-8595-9305638894EC"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
             };
             modelBuilder.Entity<OrderDetails>(b => { b.HasData(orderDetailData); });
             var billData = new Bills()
             {
                 Id = Guid.Parse("01fa417d-7900-4199-8ad9-cbb397c14235"),
                 ShopId = Guid.Parse("30D26F28-6E0A-4ECD-A5FE-0A683FDFA93A"),
-                TotalMoney = 0,
+                TotalMoney = 60000,
                 SoldDate = DateTime.UtcNow,
                 Status = Domain.Enum.EntityStatus.Active,
                 CreatedTime = DateTimeOffset.Now,
@@ -367,7 +367,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
                 NumberOfProduct = 3,
                 CreatedTime = DateTimeOffset.Now,
                 CreatedBy = Guid.Parse("EF578DBC-71F7-474F-A6EB-84DEB7F15C15"),
-                ProductID = Guid.Parse("DB904AD3-02E7-444B-8595-9305638894EC"),
+                ProductID = Guid.Parse("E5512865-9AAB-437E-A28D-DB8DB44C6EA1"),
             };
             modelBuilder.Entity<BillDetails>(b => { b.HasData(billDetailData); });
 
