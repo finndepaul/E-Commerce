@@ -35,6 +35,8 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         public DbSet<Roles> Role { get; set; }
         public DbSet<RoleUser> RoleUsers { get; set; }
         public DbSet<Shops> Shops { get; set; }
+        public DbSet<Feedbacks> Feedbacks { get; set; }
+
         //Mẫu
         public DbSet<Example> Examples { get; set; }
         #endregion
