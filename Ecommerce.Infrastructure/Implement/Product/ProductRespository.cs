@@ -92,29 +92,33 @@ namespace Ecommerce.Infrastructure.Implement.Product
                 result.Data = (from x in result.Data
                                join p in query on x.ID equals p.ID
                                orderby p.CreatedTime descending
+                               where p.Status != ProductStatus.Waiting
                                select new ProductDTO
                                {
                                    ProductsTypeName = p.ProductTypes.ProductsTypeName,
-                                   ShopName = p.Shops.ShopName,  
+                                   ShopName = p.Shops.ShopName,
                                    Images = p.Images,
                                    Price = p.Price,
                                    NameProduct = p.NameProduct,
                                    DescriptionProduct = p.DescriptionProduct,
                                    Status = p.Status,
                                }
-                               ).ToList();
-            return new PaginationResponse<ProductDTO>()
-            {
-                HasNext = result.HasNext,
-                PageNumber = result.PageNumber,
-                PageSize = result.PageSize,
-                Data = result.Data
-            };
+                             ).ToList();
+
+                return new PaginationResponse<ProductDTO>()
+                {
+                    HasNext = result.HasNext,
+                    PageNumber = result.PageNumber,
+                    PageSize = result.PageSize,
+                    Data = result.Data
+                };
+            
+     
         }
 
       
         public async Task<bool> UpdateProduct(Products products, CancellationToken cancellationToken)
-        {
+        { 
             try
             {
                 var obj = await GetByID(products.ID,cancellationToken);
