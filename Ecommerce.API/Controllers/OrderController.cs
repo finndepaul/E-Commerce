@@ -1,5 +1,7 @@
-﻿using Ecommerce.Application.DataTransferObj.Oders;
+﻿using AutoMapper;
+using Ecommerce.Application.DataTransferObj.Oders;
 using Ecommerce.Application.Interface;
+using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +13,14 @@ namespace Ecommerce.API.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOderDetailRespository _repo;
-        public OrderController(IOderDetailRespository repo)
+        IMapper _mapper;
+        public OrderController(IOderDetailRespository repo,IMapper mapper)
         {
-                _repo = repo;
+            _repo = repo;
+            _mapper = mapper;
         }
+
+
         [HttpPost("create-purchase")]
         public async Task<IActionResult> Purchase([FromBody] PurchaseRequest request, CancellationToken cancellationToken)
         {
@@ -41,47 +47,37 @@ namespace Ecommerce.API.Controllers
           
         }
 
-        [HttpGet("get-by-id")]
-        public async Task<IActionResult> GetBillById(Guid billId, CancellationToken cancellationToken)
+
+        [HttpGet("getorderdetail")]
+        public async Task<IActionResult> GetAllOrderDetailsByID(Guid UserID, CancellationToken cancellationToken)
         {
             try
             {
-                var bill = await _repo.GetBillById(billId, cancellationToken);
-               
-                    return Ok(bill);
+                var result = await _repo.GetAllOrdersOfID(UserID, cancellationToken);
+                return Ok(result);
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return BadRequest();
-            }
-           
-
-            
-
-           
+                return BadRequest(ex.Message);
+            } 
         }
 
-        [HttpDelete("delete-bill")]
-        public async Task<IActionResult> DeleteBill(Guid billId, CancellationToken cancellationToken)
+        [HttpPost("createorderdetail")]
+        public async Task<IActionResult> CreateOrderDetails([FromQuery]OrderDetailCreateRequest request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _repo.DeleteBill(billId, cancellationToken);
+                var result = await _repo.CreateOrderDetail(_mapper.Map<OrderDetails>(request), cancellationToken);
+                return Ok(result);
 
-                
-                    return Ok(result);
-                
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return BadRequest("Failed to delete the bill.");
+                return BadRequest(ex.Message);
             }
-           
-
-            
         }
     }
 }

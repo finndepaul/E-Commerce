@@ -15,9 +15,9 @@ namespace Ecommerce.Infrastructure.Extention.AutoMapperProfile
         public OderProfile() 
         {
             
-            CreateMap<BillDetails, BillDetailDto>()
+            CreateMap<OrderDetails, OrderDetailDto>()
                 .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Products.NameProduct));
-            CreateMap<Bills, BillDto>();
+            CreateMap<OrderDetails,OrderDetailCreateRequest>().ReverseMap();
 
         }
         
