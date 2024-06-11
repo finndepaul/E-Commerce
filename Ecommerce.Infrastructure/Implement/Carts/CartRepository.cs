@@ -30,7 +30,7 @@ namespace Ecommerce.Infrastructure.Implement.Carts
         {
             var cart = await _context.Cart
              .Include(c => c.CartDetails)
-             .FirstOrDefaultAsync(c => c.Id == userId && c.Status == EntityStatus.Active, cancellationToken);
+             .FirstOrDefaultAsync(c => c.Users.ID == userId && c.Status == EntityStatus.Active, cancellationToken);
 
             if (cart == null)
                 return false;

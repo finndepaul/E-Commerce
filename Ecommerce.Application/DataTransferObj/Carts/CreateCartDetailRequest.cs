@@ -10,5 +10,6 @@ namespace Ecommerce.Application.DataTransferObj.Carts
     {
         public Guid ProductID { get; set; }
         public decimal NumberOfProduct { get; set; }
+        public Guid UserID { get; set; }
     }
 }

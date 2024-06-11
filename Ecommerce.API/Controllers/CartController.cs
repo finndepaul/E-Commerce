@@ -53,10 +53,8 @@ namespace Ecommerce.API.Controllers
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
-                }
-
-                var userId = GetUserIdFromContext(); // Triển khai phương thức này để lấy ID người dùng từ ngữ cảnh
-                var result = await _repo.AddToCart(request, userId, cancellationToken);
+                }               
+                var result = await _repo.AddToCart(request, request.UserID, cancellationToken);
 
                     return Ok(result);
 
@@ -64,7 +62,6 @@ namespace Ecommerce.API.Controllers
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
         
@@ -85,12 +82,10 @@ namespace Ecommerce.API.Controllers
                 {
                     return BadRequest(ModelState);
                 }
-
-                var userId = GetUserIdFromContext();
-                var result = await _repo.UpdateCartDetail(request, userId, cancellationToken);
+                var result = await _repo.UpdateCartDetail(request, request.UserID, cancellationToken);
 
                
-                    return Ok();
+                    return Ok(result);
             }
             catch (Exception)
             {
@@ -104,7 +99,7 @@ namespace Ecommerce.API.Controllers
 
         // Endpoint để xóa sản phẩm khỏi giỏ hàng
         [HttpDelete("remove-cart")]
-        public async Task<IActionResult> DeleteCartDetail([FromBody] DeleteCartDetailRequest request, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteCartDetail([FromQuery] DeleteCartDetailRequest request, CancellationToken cancellationToken)
         {
             try
             {
@@ -112,15 +107,12 @@ namespace Ecommerce.API.Controllers
                 {
                     return BadRequest(ModelState);
                 }
+                var result = await _repo.RemoveFromCart(request, request.UserID, cancellationToken);
 
-                var userId = GetUserIdFromContext();
-                var result = await _repo.RemoveFromCart(request, userId, cancellationToken);
-
-                    return Ok();
+                    return Ok(result);
             }
             catch (Exception)
             {
-
                 return BadRequest();
             }
             
