@@ -41,7 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddEndpointsApiExplorer();
 // Đăng ký dịch vụ giỏ hàng
 builder.Services.AddTransient<ICartRepository, CartRepository>();
-builder.Services.AddTransient<IOderDetailRespository,OrderResponsitory >();
+builder.Services.AddTransient<IOderDetailRespository,Order_CustomerRepo >();
 builder.Services.AddAuthorization();
 builder.Services.AddAutoMapper(typeof(CartProfile));
 builder.Services.AddApplication(); //use automapper

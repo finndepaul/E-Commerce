@@ -57,5 +57,19 @@ namespace Ecommerce.API.Controllers
                 return BadRequest("Faild: " + $"{ex.Message}");
             }
         }
+
+        [HttpPost("confirmcode")]
+        public async Task<IActionResult> ConfirmCode(ConfirmCodeRequest request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var obj = await _repo.ConfirmCode(request, cancellationToken);
+                return Ok(obj);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Faild: " + $"{ex.Message}");
+            }
+        }
     }
 }
