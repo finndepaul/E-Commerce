@@ -92,7 +92,6 @@ namespace Ecommerce.Infrastructure.Implement.Product
                 result.Data = (from x in result.Data
                                join p in query on x.ID equals p.ID
                                orderby p.CreatedTime descending
-                               where p.Status != ProductStatus.Waiting
                                select new ProductDTO
                                {
                                    ProductsTypeName = p.ProductTypes.ProductsTypeName,
