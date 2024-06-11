@@ -16,6 +16,6 @@ namespace Ecommerce.Application.Interface
         Task<bool> CreateProduct(Products products, CancellationToken cancellationToken);
         Task<bool> UpdateProduct(Products products, CancellationToken cancellationToken);
         Task<bool> DeleteProduct(Products products, CancellationToken cancellationToken);
-       
+        Task<bool> ProductReview(Guid id ,CancellationToken cancellationToken);
     }
 }

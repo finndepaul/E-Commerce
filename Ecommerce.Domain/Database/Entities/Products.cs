@@ -13,7 +13,7 @@ namespace Ecommerce.Domain.Database.Entities
         public decimal Price { get; set; }
         public List<string> Images { get; set; } = new List<string>();
         public int Quantity { get; set; }
-        public ProductStatus Status { get; set; } = ProductStatus.Still;
+        public ProductStatus Status { get; set; } = ProductStatus.Waiting;
 
 
         // khóa  ngoại 
