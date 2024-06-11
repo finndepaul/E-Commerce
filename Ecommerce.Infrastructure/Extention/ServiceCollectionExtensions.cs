@@ -1,7 +1,7 @@
 ﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Implement;
-using Ecommerce.Infrastructure.Implement.Products;
+using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.RoleUserRepo;
 using Ecommerce.Infrastructure.Implement.Sale;
