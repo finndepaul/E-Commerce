@@ -32,8 +32,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
             services.AddTransient<ISalesRespository, SaleRespository>();
-            services.AddTransient<IFeedBackRepository, FeedbackRepository>();
-            services.AddTransient<IShopsRepository, ShopsRepository>();
+         
             return services;
         }
     }
