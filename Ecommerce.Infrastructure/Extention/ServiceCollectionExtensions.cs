@@ -1,6 +1,7 @@
 ﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Implement;
+using Ecommerce.Infrastructure.Implement.FeedbackRepo;
 using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.RoleUserRepo;
@@ -30,6 +31,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
             services.AddTransient<ISalesRespository, SaleRespository>();
+            services.AddTransient<IFeedBackRepository, FeedbackRepository>();
             return services;
         }
     }

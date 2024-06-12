@@ -36,6 +36,8 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         public DbSet<Roles> Role { get; set; }
         public DbSet<RoleUser> RoleUsers { get; set; }
         public DbSet<Shops> Shops { get; set; }
+        public DbSet<Feedbacks> Feedbacks { get; set; }
+
         //Mẫu
         public DbSet<Example> Examples { get; set; }
         #endregion
@@ -50,10 +52,10 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
             //optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
             // Đăng
-            //optionsBuilder.UseSqlServer("Server=SURINRIN\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
             // Thế
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+            //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
             // Trọng
             //optionsBuilder.UseSqlServer("Server=vantrong\SQLEXPRESS;Database=Trong_ph35790;Trusted_Connection=True;TrustServerCertificate=True");

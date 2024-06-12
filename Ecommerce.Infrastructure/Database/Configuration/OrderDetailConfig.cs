@@ -11,6 +11,7 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.HasKey(x => x.ID);
             builder.HasOne(x => x.Products).WithMany(x => x.OrderDetails).HasForeignKey(x => x.ProductID);
             builder.HasOne(x => x.Users).WithMany(x => x.OrderDetails).HasForeignKey(x => x.CreatedBy);
+            builder.HasOne(x => x.Feedbacks).WithOne(x => x.OrderDetails).HasForeignKey<Feedbacks>(x => x.OrderDetailID); 
         }
     }
 }

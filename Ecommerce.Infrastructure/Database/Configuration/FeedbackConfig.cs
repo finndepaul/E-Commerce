@@ -9,7 +9,7 @@ namespace DuAnBanHang.Domain.Configurations
         public void Configure(EntityTypeBuilder<Feedbacks> builder)
         {
             builder.HasKey(x => x.ID);
-            builder.HasOne(x => x.OrderDetails).WithOne(x => x.Feedbacks).HasForeignKey<Feedbacks>(x => x.OrderDetailID);
+           
         }
     }
 }
