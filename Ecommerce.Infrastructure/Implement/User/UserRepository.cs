@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Ecommerce.Application.DataTransferObj.User.Request;
 using Ecommerce.Application.Interface;
 using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
@@ -73,6 +74,47 @@ namespace Ecommerce.Infrastructure.Implement.User
             {
                 return ErrorMessage.Faild;
             }
+        }
+
+        public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
+        {
+            var users = await _context.User.ToListAsync(cancellationToken);
+            return _map.Map<List<UserDto>>(users);
+        }
+
+        public async Task<UserDto> GetUserById(Guid id, CancellationToken cancellationToken)
+        {
+            var user = await _context.User.FindAsync(id, cancellationToken);
+            return _map.Map<UserDto>(user);
+        }
+
+        public async Task<ErrorMessage> UpdateUser(UserUpdateRequest request, CancellationToken cancellationToken)
+        {
+            var user = await _context.User.FindAsync(request.Id, cancellationToken);
+            if (user == null)
+            {
+                return ErrorMessage.Faild;
+            }
+
+            _map.Map(request, user);
+            _context.User.Update(user);
+            await _context.SaveChangesAsync(cancellationToken);
+            return ErrorMessage.Successfull;
+        }
+
+        public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
+        {
+            
+            var user = await _context.User.FirstOrDefaultAsync( x => x.ID == id ,cancellationToken);
+            if (user != null)
+            {
+                _context.User.Remove(user);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+
+                return false;
         }
     }
 }

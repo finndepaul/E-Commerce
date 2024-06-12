@@ -69,23 +69,25 @@ namespace Ecommerce.Infrastructure.Implement.ProductType
             var query = _db.ProductType.AsNoTracking();
             if (!String.IsNullOrWhiteSpace(request.ProductsTypeName))
             {
-                query = query.Where(x => x.ProductsTypeName == request.ProductsTypeName);
+                query = query.Where(x => x.ProductsTypeName.Contains(request.ProductsTypeName.ToLower()));
             }
-            var result = await query.PaginateAsync<ProductTypes, ProductTypeDTO>(request,_map,cancellationToken);
-            result.Data = (from item in result.Data
-                           join p in query on item.ID equals p.ID
+           var result =  await query.PaginateAsync<ProductTypes, ProductTypeDTO>(request,_map, cancellationToken);
+            result.Data = (from x in result.Data
+                           join y in query on x.ID equals y.ID
+                           orderby y.CreatedTime descending
                            select new ProductTypeDTO
                            {
-                               ID = p.ID,
-                               ProductsTypeName = p.ProductsTypeName,
-                               Status = p.Status,
-                           }).ToList();
-            return new PaginationResponse<ProductTypeDTO> 
+                               ID = y.ID,
+                               ProductsTypeName=  y.ProductsTypeName,
+                               Status = y.Status,
+                           }
+                ).ToList();
+            return new PaginationResponse<ProductTypeDTO>
             {
+                Data = result.Data, 
                 HasNext = result.HasNext,
-                Data = result.Data,
-                PageSize = result.PageSize,
                 PageNumber = result.PageNumber,
+                PageSize = result.PageSize, 
             };
         }
 
