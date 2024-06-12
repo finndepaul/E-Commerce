@@ -6,6 +6,7 @@ using Ecommerce.Infrastructure.Implement.Carts;
 using Ecommerce.Infrastructure.Implement.OrderResponsitory;
 using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
+using Ecommerce.Infrastructure.Implement.SaleType;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -40,6 +41,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 // Kích hoạt Swagger để tài liệu API
 builder.Services.AddEndpointsApiExplorer();
 // Đăng ký dịch vụ giỏ hàng
+builder.Services.AddTransient<ISaleTypeResponsitory, SaleTypeResponsitory>();
 builder.Services.AddTransient<ICartRepository, CartRepository>();
 builder.Services.AddTransient<IOderDetailRespository,Order_CustomerRepo >();
 builder.Services.AddAuthorization();
