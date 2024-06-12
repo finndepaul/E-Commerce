@@ -20,14 +20,15 @@ namespace Ecommerce.API.Controllers
         [HttpGet("get-product")]
         public async Task<IActionResult> GetAll([FromQuery] ViewProductRequest product, CancellationToken cancellationToken)
         {
-            //var result = await _res.GetAll(new ViewProductRequest()
-            //{
-            //    NameProduct = product.NameProduct,
-            //    PageNumber = product.PageNumber,
-            //    PageSize = product.PageSize,
-            //    Status = Domain.Enum.ProductStatus.Waiting,
-            //}, cancellationToken);
-            var result = await _res.GetAll(product, cancellationToken);
+            var result = await _res.GetAll(new ViewProductRequest()
+            {
+                NameProduct = product.NameProduct,
+                PageNumber = product.PageNumber,
+                PageSize = product.PageSize,
+                Status = Domain.Enum.ProductStatus.Waiting,
+            }, cancellationToken);
+            //var a = result.Data.SkipWhile(x=>x.Status == Domain.Enum.ProductStatus.Waiting)
+            //var result = await _res.GetAll(product, cancellationToken);
             return Ok(result);
         }
         [HttpPost("inspect-product")]
