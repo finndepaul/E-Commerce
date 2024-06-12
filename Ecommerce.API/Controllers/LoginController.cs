@@ -40,7 +40,7 @@ namespace Ecommerce.API.Controllers
 
             // Tạo JWT token
             var token = GenerateToken(user);
-            return Ok(new { Token = token });
+            return Ok(token);
         }
 
         private string GenerateToken(LoginDTO user)
