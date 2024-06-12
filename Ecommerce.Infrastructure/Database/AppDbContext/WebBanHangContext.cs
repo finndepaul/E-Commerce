@@ -46,14 +46,15 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			// Đông
-			//optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
+			optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 
 			// Hoàng
 			//optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 			// Đăng
-			optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+			// optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
 			// Thế
 			//optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
@@ -62,7 +63,9 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 			//optionsBuilder.UseSqlServer("Server=vantrong\\SQLEXPRESS;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
 			// Phong
+
 			//optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
 		}
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -342,28 +345,6 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 				},
 			};
 			modelBuilder.Entity<Products>(b => { b.HasData(productData); });
-			for (int i = 0; i < 50; i++)
-			{
-				var product = new Products
-				{
-					ID = Guid.NewGuid(),
-					CreatedTime = DateTimeOffset.Now.AddDays(i + 2),
-					Images = new List<string>
-		{
-			$"image{i+5}.jpg",
-			$"image{i+6}.jpg"
-		},
-					Price = 25000 + i * 500,
-					Status = (i % 3 == 0) ? Domain.Enum.ProductStatus.Approved : (i % 3 == 1) ? Domain.Enum.ProductStatus.Waiting : Domain.Enum.ProductStatus.Out,
-					DescriptionProduct = $"Product {i + 3} Description",
-					NameProduct = $"Product {i + 3}",
-					ProductTypeID =Guid.Parse("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
-					ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a")
-				};
-
-				modelBuilder.Entity<Products>(b => { b.HasData(product); });
-			}
-			
 			var cartDetailData = new CartDetails()
 			{
 				Id = Guid.NewGuid(),
