@@ -11,5 +11,5 @@ namespace Ecommerce.Application.DataTransferObj.Oders
         public Guid UserId { get; set; }
         public List<Guid> CartDetailIds { get; set; }
         public Guid PaymentExpressionID { get; set; } // ID phương thức thanh toán
-    }
+    }       
 }
