@@ -15,6 +15,7 @@ using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ecommerce.Infrastructure.Implement.FeedbackRepo;
 
 namespace Ecommerce.Infrastructure.Extention
 {
@@ -26,7 +27,7 @@ namespace Ecommerce.Infrastructure.Extention
             {
 
                 // Configure your DbContext options here
-                options.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
+                options.UseSqlServer("Data Source=vantrong\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
             });
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IRoleUserRepository, RoleUserRepository>();
@@ -37,7 +38,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<ISalesRespository, SaleRespository>();
 
             services.AddTransient<IAddressRepository, AddressRepository>();
-            services.AddTransient<IFeedBackRepository, IFeedBackRepository>();
+            services.AddTransient<IFeedBackRepository, FeedbackRepository>();
             services.AddTransient<IShopsRepository, ShopsRepository>();
 
             services.AddTransient<ISaleDetailRespository, SaleDetailRespository>();

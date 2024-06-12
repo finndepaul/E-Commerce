@@ -63,7 +63,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
             optionsBuilder.UseSqlServer("Server=vantrong\\SQLEXPRESS;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
             // Phong
-            optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+            // BoptionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

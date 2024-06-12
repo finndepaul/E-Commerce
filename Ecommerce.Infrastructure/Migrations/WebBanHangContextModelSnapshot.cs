@@ -125,10 +125,10 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("e4191448-e337-4151-bf06-d8a03e777f39"),
+                            ID = new Guid("c1cc5426-bab6-4046-bf31-88b7f1493101"),
                             BillID = new Guid("01fa417d-7900-4199-8ad9-cbb397c14235"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7976), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7161), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -190,12 +190,12 @@ namespace Ecommerce.Infrastructure.Migrations
                         {
                             Id = new Guid("01fa417d-7900-4199-8ad9-cbb397c14235"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7933), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7143), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ShopId = new Guid("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a"),
-                            SoldDate = new DateTime(2024, 6, 12, 4, 31, 14, 386, DateTimeKind.Utc).AddTicks(7930),
+                            SoldDate = new DateTime(2024, 6, 12, 16, 50, 12, 60, DateTimeKind.Utc).AddTicks(7141),
                             Status = 1,
                             TotalMoney = 60000m
                         });
@@ -258,10 +258,10 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("acb349ec-69d3-4507-a98e-d21a4331c692"),
+                            Id = new Guid("b8ae3e66-45d6-45b9-a094-8612591f953a"),
                             CartID = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7804), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7077), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -320,7 +320,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         {
                             Id = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7611), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6989), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -463,9 +463,9 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            ID = new Guid("747f353d-76b8-4b9c-a75d-56d8912bd500"),
+                            ID = new Guid("b481365b-7cc0-4ad7-ae30-de37fc832627"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7850), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7100), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -615,7 +615,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7666), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7014), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -625,7 +625,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("e701de07-7b1e-4d47-88fc-fa9ddf9457d9"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7675), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7021), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -706,7 +706,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("e5512865-9aab-437e-a28d-db8db44c6ea1"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7729), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7043), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionProduct = "Ngon",
@@ -722,7 +722,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("db904ad3-02e7-444b-8595-9305638894ec"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7745), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(7053), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DescriptionProduct = "Ngon",
@@ -781,9 +781,9 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a666abc6-85be-40ee-9a48-d532221083b5"),
+                            Id = new Guid("6c0a9a93-faa8-4abb-bc44-754378ae82f4"),
                             CreatedBy = new Guid("e589e999-152a-44a1-bb74-48883a4d302e"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7212), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6797), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -792,9 +792,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3f105e1d-1294-4a07-a3d7-68b1d8250b08"),
+                            Id = new Guid("a5a84b19-9fc4-4a35-a76e-7b93b270e643"),
                             CreatedBy = new Guid("0be0ee12-f390-49c0-a775-df1933663b96"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7222), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6801), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -803,9 +803,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("97eafe51-cf8f-4b7d-b66a-ff3716e91473"),
+                            Id = new Guid("dda6578a-eb8e-449e-8a84-2189a0091cbd"),
                             CreatedBy = new Guid("73fea99f-048e-44bf-8c3c-984f705530db"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7228), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6804), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -814,9 +814,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e3a97f64-5ca1-4687-8008-add3620f9cc8"),
+                            Id = new Guid("7db0757d-cdca-4d05-b8c7-60b03f862a7b"),
                             CreatedBy = new Guid("11b670d6-167a-42d4-be32-85cc970a218d"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7234), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6807), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -825,9 +825,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f46719ba-69dc-4a33-9f36-ff5a76abded4"),
+                            Id = new Guid("0f994cdf-e982-4881-80b2-ab9e40a703dc"),
                             CreatedBy = new Guid("8e0d06d1-5896-4886-a77e-6e794a212f92"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7240), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6810), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -836,9 +836,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("757d8b46-2e77-4c26-9065-720b7fb60ade"),
+                            Id = new Guid("7a0b07ea-6c66-4058-bd95-edfd8259595b"),
                             CreatedBy = new Guid("3e51f9f1-ae83-4b66-b79f-5eb8f32d2075"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7248), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6814), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -847,9 +847,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("be9ca460-28cb-4d4a-baba-f345f7680082"),
+                            Id = new Guid("32a4d478-c396-4241-8820-99d258cb79ca"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7264), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6824), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -858,9 +858,9 @@ namespace Ecommerce.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = new Guid("23b37e69-ae24-4c9e-a15f-22cc993a6419"),
+                            Id = new Guid("a5686d6d-2ee1-4392-90c2-cc513714c676"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7283), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6827), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -914,7 +914,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("25d7afcb-949b-4717-a961-b50f2e18657d"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6161), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6262), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -924,7 +924,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("ba820c64-1a81-4c44-80ea-47038c930c3b"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6206), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6308), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -934,7 +934,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("56bece24-ba60-4b2b-801c-b68cfc8ccf9d"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6210), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6310), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -1155,7 +1155,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         {
                             ShopId = new Guid("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a"),
                             CreatedBy = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 4, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7418), new TimeSpan(0, 0, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 16, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6866), new TimeSpan(0, 0, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             ModifiedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
@@ -1242,7 +1242,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("e589e999-152a-44a1-bb74-48883a4d302e"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6326), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6360), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "azusachan309@gmail.com",
@@ -1256,7 +1256,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("0be0ee12-f390-49c0-a775-df1933663b96"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6825), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6624), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "trongnvph35790@fpt.edu.vn",
@@ -1270,7 +1270,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("73fea99f-048e-44bf-8c3c-984f705530db"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6893), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6644), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "thendph35306@fpt.edu.vn",
@@ -1284,7 +1284,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("11b670d6-167a-42d4-be32-85cc970a218d"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6930), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6665), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "dongbdph35416@fpt.edu.vn",
@@ -1298,7 +1298,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("8e0d06d1-5896-4886-a77e-6e794a212f92"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(6963), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6707), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "phongdxph35748@fpt.edu.vn",
@@ -1312,7 +1312,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("3e51f9f1-ae83-4b66-b79f-5eb8f32d2075"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7000), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6723), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "hoangpkph38105@fpt.edu.vn",
@@ -1326,7 +1326,7 @@ namespace Ecommerce.Infrastructure.Migrations
                         new
                         {
                             ID = new Guid("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
-                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 11, 31, 14, 386, DateTimeKind.Unspecified).AddTicks(7034), new TimeSpan(0, 7, 0, 0, 0)),
+                            CreatedTime = new DateTimeOffset(new DateTime(2024, 6, 12, 23, 50, 12, 60, DateTimeKind.Unspecified).AddTicks(6736), new TimeSpan(0, 7, 0, 0, 0)),
                             Deleted = false,
                             DeletedTime = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Email = "azusachan307@gmail.com",
