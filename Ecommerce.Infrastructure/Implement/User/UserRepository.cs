@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Ecommerce.Application.DataTransferObj.User.Request;
 using Ecommerce.Application.Interface;
+using Ecommerce.Application.ValueObj.Pagination;
 using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
 using Ecommerce.Infrastructure.Database.AppDbContext;
@@ -76,11 +77,46 @@ namespace Ecommerce.Infrastructure.Implement.User
             }
         }
 
-        public async Task<List<UserDto>> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<PaginationResponse<UserDto>> GetAllUsers(ViewUserRequest request, CancellationToken cancellationToken)
         {
-            var users = await _context.User.ToListAsync(cancellationToken);
-            return _map.Map<List<UserDto>>(users);
+            var query = _context.User.AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(request.FullName))
+            {
+                query = query.Where(x => x.FullName.Contains(request.FullName.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(request.Email))
+            {
+                query = query.Where(x => x.Email.Contains(request.Email.ToLower()));
+            }
+            if (!string.IsNullOrWhiteSpace(request.Username))
+            {
+                query = query.Where(x => x.Username.Contains(request.Username.ToLower()));
+            }
+            if (request.Status.HasValue)
+            {
+                query = query.Where(x => x.Status == request.Status);
+            }
+
+            var totalItems = await query.CountAsync(cancellationToken);
+            var totalPages = (int)Math.Ceiling(totalItems / (double)request.PageSize);
+
+            var users = await query
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync(cancellationToken);
+
+            var userDtos = _map.Map<List<UserDto>>(users);
+
+            return new PaginationResponse<UserDto>
+            {
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize,
+                HasNext = request.PageNumber < totalPages,
+                Data = userDtos
+            };
         }
+
 
         public async Task<UserDto> GetUserById(Guid id, CancellationToken cancellationToken)
         {
