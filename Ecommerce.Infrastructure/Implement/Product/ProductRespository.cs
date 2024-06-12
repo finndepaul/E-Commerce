@@ -95,6 +95,14 @@ namespace Ecommerce.Infrastructure.Implement.Product
             {
                 query = query.Where(x => x.ProductTypeID == request.ProductTypeID);
             }
+            if (request.MinPrice.HasValue)
+            {
+                query = query.Where(x => x.Price >= request.MinPrice);
+            }
+            if (request.MaxPrice.HasValue)
+            {
+                query = query.Where(x => x.Price <= request.MaxPrice);
+            }
             var result = await query.PaginateAsync<Products, ProductDTO>(request, _mapper, cancellationToken);
                 result.Data = (from x in result.Data
                                join p in query on x.ID equals p.ID
@@ -103,7 +111,6 @@ namespace Ecommerce.Infrastructure.Implement.Product
                                {
                                    ID = p.ID,
                                    ShopId = p.ShopId,
-
                                    ProductsTypeName = p.ProductTypes.ProductsTypeName,
                                    ShopName = p.Shops.ShopName,
                                    Images = p.Images,
@@ -162,67 +169,24 @@ namespace Ecommerce.Infrastructure.Implement.Product
         {
             try
             {
-                var query = await _db.Product.FirstOrDefaultAsync(x => x.ID == id,cancellationToken);
-                if (query == null) 
+                var query = await _db.Product.FirstOrDefaultAsync(x => x.ID == id, cancellationToken);
+                if (query == null)
                 {
                     return false;
                 }
                 else
                 {
                     query.Status = ProductStatus.Approved;
-                     _db.Product.Update(query);
+                    _db.Product.Update(query);
                     await _db.SaveChangesAsync();
                     return true;
-                   
+
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 return false;
             }
         }
-        private async Task<List<Products>> Filter(Products products)
-        {
-            ProductFilter filter = new ProductFilter();
-            var filteredProducts = await _db.Product.ToListAsync();
-            if (!string.IsNullOrEmpty(filter.Name))
-            {
-                filteredProducts = filteredProducts.Where(x=>x.NameProduct.Contains(filter.Name,StringComparison.OrdinalIgnoreCase)).ToList();
-            }
-            if (!string.IsNullOrEmpty(filter.Category.ToString()))
-            {
-                filteredProducts = filteredProducts.Where(x => x.ProductTypeID== filter.Category).ToList();
-            }
-            if (filter.DateFrom.HasValue)
-            {
-                filteredProducts = filteredProducts.Where(x=>x.CreatedTime >= filter.DateFrom.Value).ToList();
-
-            }
-            if (filter.DateTo.HasValue) 
-            {
-                filteredProducts = filteredProducts.Where(x => x.CreatedTime <= filter.DateFrom.Value).ToList();
-            }
-            if (filter.PriceFrom.HasValue)
-            {
-                filteredProducts = filteredProducts.Where(x => x.Price >= filter.PriceFrom.Value).ToList();
-            }
-            if (filter.PriceTo.HasValue)
-            {
-                filteredProducts = filteredProducts.Where(x => x.Price <= filter.PriceTo.Value).ToList();
-            }
-      
-            return filteredProducts.ToList();
-        }
-        public class ProductFilter
-        {
-          
-            public string Name { get; set; }
-            public decimal? PriceFrom { get; set; }
-            public decimal? PriceTo { get; set; }
-            public Guid Category { get; set; }
-            public DateTime? DateFrom { get; set; }
-            public DateTime? DateTo { get; set; }
-        }
-
     }
 }
