@@ -71,11 +71,12 @@ namespace Ecommerce.Infrastructure.Implement.ProductType
             {
                 query = query.Where(x => x.ProductsTypeName == request.ProductsTypeName);
             }
-            var result = await query.PaginateAsync<Ecommerce.Domain.Database.Entities.ProductTypes, ProductTypeDTO>(request,_map,cancellationToken);
+            var result = await query.PaginateAsync<ProductTypes, ProductTypeDTO>(request,_map,cancellationToken);
             result.Data = (from item in result.Data
                            join p in query on item.ID equals p.ID
                            select new ProductTypeDTO
                            {
+                               ID = p.ID,
                                ProductsTypeName = p.ProductsTypeName,
                                Status = p.Status,
                            }).ToList();
@@ -109,7 +110,7 @@ namespace Ecommerce.Infrastructure.Implement.ProductType
                 return false;
             }
         }
-        private async Task<Domain.Database.Entities.ProductTypes> GetByID(Guid id,CancellationToken cancellationToken)
+        private async Task<ProductTypes> GetByID(Guid id,CancellationToken cancellationToken)
         {
             var getById = await _db.ProductType.FirstOrDefaultAsync(x=>x.ID == id);
             return getById;

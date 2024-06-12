@@ -31,7 +31,7 @@ namespace Ecommerce.API.Controllers
             //var result = await _res.GetAll(product, cancellationToken);
             return Ok(result);
         }
-        [HttpPost("inspect-product")]
+        [HttpDelete("inspect-product")]
         public async Task<IActionResult> InspectProduct(Guid productId, CancellationToken cancellationToken)
         {
             try

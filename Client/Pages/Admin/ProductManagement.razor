@@ -1,0 +1,44 @@
+﻿@page "/productmanagement"
+<h3>Product Management</h3>
+
+@if (list == null)
+{
+    <div Class="d-flex justify-center mt-3">
+        <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+    </div>
+}
+else
+{
+
+    <div class="d-flex justify-end">
+    </div>
+    // @ref="@_table" để pagination, RowsPerPage= số hàng muốn hiện
+    <MudTable @ref="@_table" RowsPerPage="5" Items="@list.Data" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh></MudTh>
+            <MudTh>Name</MudTh>
+            <MudTh>Description</MudTh>
+            <MudTh>Price</MudTh>
+            <MudTh>Quantity</MudTh>
+            <MudTh>Shop Name</MudTh>
+            <MudTh>Status</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Nr">@context.Images[0]</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.NameProduct</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.DescriptionProduct</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.Price</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.Quantity</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.ShopName</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.Status</MudTd>
+            <MudTd DataLabel="Sign">
+                <MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Update" Color="Color.Error"@onclick="()=>DuyetSP(context.ID)">Duyệt</MudButton>
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <div class="d-flex justify-center">
+                <MudPagination SelectedChanged="PageChanged" Count="@((_table.GetFilteredItemsCount() + _table.RowsPerPage - 1) / _table.RowsPerPage)" Class="pa-4" />
+            </div>
+        </PagerContent>
+    </MudTable>
+}
