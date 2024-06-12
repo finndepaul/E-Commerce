@@ -5,6 +5,7 @@ using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.RoleUserRepo;
 using Ecommerce.Infrastructure.Implement.Sale;
+using Ecommerce.Infrastructure.Implement.SaleDetail;
 using Ecommerce.Infrastructure.Implement.Ulitities;
 using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
             services.AddTransient<ISalesRespository, SaleRespository>();
+            services.AddTransient<ISaleDetailRespository, SaleDetailRespository>();
             return services;
         }
     }
