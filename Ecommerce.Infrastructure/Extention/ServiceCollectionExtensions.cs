@@ -15,6 +15,7 @@ using Ecommerce.Infrastructure.Implement.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ecommerce.Infrastructure.Implement.FeedbackRepo;
 
 namespace Ecommerce.Infrastructure.Extention
 {
@@ -37,7 +38,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<ISalesRespository, SaleRespository>();
 
             services.AddTransient<IAddressRepository, AddressRepository>();
-            services.AddTransient<IFeedBackRepository, IFeedBackRepository>();
+            services.AddTransient<IFeedBackRepository, FeedbackRepository>();
             services.AddTransient<IShopsRepository, ShopsRepository>();
 
             services.AddTransient<ISaleDetailRespository, SaleDetailRespository>();
