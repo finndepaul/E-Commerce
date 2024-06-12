@@ -22,22 +22,49 @@ namespace Ecommerce.Infrastructure.Implement.SaleDetail
             _mapper = mapper;
             _reps = new WebBanHangContext();
         }
-        public Task<bool> Create(SaleDetails details, CancellationToken cancellationToken)
+        public async Task<bool> Create(SaleDetails details, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                details.ID = Guid.NewGuid();
+                details.Status = Domain.Enum.EntityStatus.PendingForActivation;
+                _reps.SaleDetail.Add(details);  
+                await _reps.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<bool> Delete(SaleDetails details, CancellationToken cancellationToken)
+        public async Task<bool> Delete(SaleDetails details, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var obj = await GetById(details.ID, cancellationToken);
+                if (obj != null) 
+                {
+                    obj.Deleted = true;
+                    obj.Status = Domain.Enum.EntityStatus.Locked;
+                    _reps.Update(obj);
+                    await _reps.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public async Task<SaleDetailDTO> GetSaleDetail(SaleDetails saleDetails, CancellationToken cancellationToken)
+        public async Task<SaleDetailDTO> GetSaleDetail(Guid id, CancellationToken cancellationToken)
         {
             try
             {
                 var sale = await _reps.SaleDetail.Include(x=>x.Sales).Include(x=>x.Products)
-                    .FirstOrDefaultAsync(x=>x.IdSale == saleDetails.IdSale && x.IdProduct==saleDetails.IdProduct);
+                    .FirstOrDefaultAsync(x=>x.IdSale == id && x.IdProduct==id);
                 if (sale == null) 
                 {
                     return null;
@@ -57,10 +84,31 @@ namespace Ecommerce.Infrastructure.Implement.SaleDetail
                 return null;      
             }
         }
-
-        public Task<bool> Update(SaleDetails details, CancellationToken cancellationToken)
+        private async Task<SaleDetails> GetById(Guid id,CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var query = await _reps.SaleDetail.FirstOrDefaultAsync(x=>x.ID==id);
+            return query;
+        }
+        public async Task<bool> Update(SaleDetails details, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var obj = await GetById(details.ID,cancellationToken);
+                if (obj == null) return false;
+                else
+                {
+                   obj.CountProduct = details.CountProduct;
+                    obj.Discount = details.Discount;    
+                    obj.Status = details.Status;
+                    obj.ModifiedTime= DateTimeOffset.Now;
+                    _reps.Update(obj);
+                    await _reps.SaveChangesAsync();
+                    return true;
+                }
+            }catch 
+            {
+                return false;
+            }
         }
     }
 }
