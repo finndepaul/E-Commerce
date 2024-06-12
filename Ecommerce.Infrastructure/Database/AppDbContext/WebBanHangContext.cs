@@ -272,21 +272,21 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 
             };
             modelBuilder.Entity<Carts>(b => { b.HasData(cartData); });
-            var addressData = new List<Address>()
+          /*  var addressData = new List<Address>()
             {
                 new Address {
                     Id = Guid.NewGuid(),
                     CreatedBy = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                     Status = Domain.Enum.EntityStatus.Active,
-                    UserAddress = "123 Streat",
+                    //UserAddress = "123 Streat",
                 }, new Address {
                     Id = Guid.NewGuid(),
                     CreatedBy = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                     Status = Domain.Enum.EntityStatus.Active,
-                    UserAddress = "345 Streat",
+                    //UserAddress = "345 Streat",
                 },
             };
-            modelBuilder.Entity<Address>(b => { b.HasData(addressData); });
+            modelBuilder.Entity<Address>(b => { b.HasData(addressData); });*/
             var productTypeData = new List<ProductTypes>()
             {
                 new ProductTypes()
