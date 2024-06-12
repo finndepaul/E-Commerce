@@ -10,6 +10,7 @@ namespace Ecommerce.Application.DataTransferObj.Oders
     {
         public Guid ProductID { get; set; }
         public Guid? CreatedBy { get; set; }
+        public decimal Shipfee { get; set; }
         public decimal Price { get; set; }
         public int NumberOfProduct { get; set; }
     }
