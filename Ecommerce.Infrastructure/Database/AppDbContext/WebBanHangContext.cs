@@ -358,9 +358,9 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 	$"image{i+6}.jpg"
 },
 					Price = 25000 + i * 500,
-					Status = (i % 3 == 0) ? Domain.Enum.ProductStatus.Approved : (i % 3 == 1) ? Domain.Enum.ProductStatus.Waiting : Domain.Enum.ProductStatus.Out,
+					Status = Domain.Enum.ProductStatus.Approved,
 					DescriptionProduct = $"Product {i + 3} Description",
-					Quantity = 100,
+					Quantity = 100,					
 					NameProduct = $"Product {i + 3}",
 					ProductTypeID = Guid.Parse("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
 					ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a")
