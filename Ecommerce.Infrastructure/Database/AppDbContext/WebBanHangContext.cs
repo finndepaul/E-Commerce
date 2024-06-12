@@ -323,6 +323,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 					Price = 20000,
 					Status = Domain.Enum.ProductStatus.Approved,
 					DescriptionProduct = "Ngon",
+					Quantity = 100,
 					NameProduct = "Bánh Oreon",
 					ProductTypeID = Guid.Parse("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
 					ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a"),
@@ -338,12 +339,36 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 					Price = 20000,
 					Status = Domain.Enum.ProductStatus.Waiting,
 					DescriptionProduct = "Ngon",
+					Quantity = 100,
 					NameProduct = "Kẹo ChupaChup",
 					ProductTypeID = Guid.Parse("e701de07-7b1e-4d47-88fc-fa9ddf9457d9"),
 					ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a"),
 
 				},
 			};
+			for (int i = 0; i < 50; i++)
+			{
+				var product = new Products
+				{
+					ID = Guid.NewGuid(),
+					CreatedTime = DateTimeOffset.Now.AddDays(i + 2),
+					Images = new List<string>
+{
+	$"image{i+5}.jpg",
+	$"image{i+6}.jpg"
+},
+					Price = 25000 + i * 500,
+					Status = Domain.Enum.ProductStatus.Approved,
+					DescriptionProduct = $"Product {i + 3} Description",
+					Quantity = 100,					
+					NameProduct = $"Product {i + 3}",
+					ProductTypeID = Guid.Parse("4f352b67-98ad-4557-9315-dea5a8fe1c15"),
+					ShopId = Guid.Parse("30d26f28-6e0a-4ecd-a5fe-0a683fdfa93a")
+				};
+
+				modelBuilder.Entity<Products>(b => { b.HasData(product); });
+			}
+
 			modelBuilder.Entity<Products>(b => { b.HasData(productData); });
 			var cartDetailData = new CartDetails()
 			{

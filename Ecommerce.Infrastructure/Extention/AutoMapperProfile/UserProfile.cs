@@ -14,6 +14,8 @@ namespace Ecommerce.Infrastructure.Extention.AutoMapperProfile
         public UserProfile()
         {
             CreateMap<UserCreateRequest, Users>().ReverseMap();
+            CreateMap<Users, UserDto>().ReverseMap();
+            CreateMap<UserUpdateRequest, Users>();
         }
     }
 }
