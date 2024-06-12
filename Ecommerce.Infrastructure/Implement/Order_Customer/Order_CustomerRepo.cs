@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Ecommerce.Application.DataTransferObj.Oders;
 using Ecommerce.Application.Interface;
@@ -50,6 +50,10 @@ namespace Ecommerce.Infrastructure.Implement.OrderResponsitory
                 var result = await _context.OrderDetail.AddAsync(request,cancellationToken);
 
                 var product = await _context.Product.FindAsync(request.ProductID,cancellationToken);
+                if(product.Quantity < request.NumberOfProduct) 
+                {
+                    return false;
+                }
                 product.Quantity -= request.NumberOfProduct;
                 _context.Product.Update(product);
 

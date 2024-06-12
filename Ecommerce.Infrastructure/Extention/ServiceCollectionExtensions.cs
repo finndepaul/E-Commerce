@@ -1,7 +1,7 @@
 ﻿using Ecommerce.Application.Interface;
 using Ecommerce.Infrastructure.Database.AppDbContext;
 using Ecommerce.Infrastructure.Implement;
-using Ecommerce.Infrastructure.Implement.FeedbackRepo;
+using Ecommerce.Infrastructure.Implement.AddressRepo;
 using Ecommerce.Infrastructure.Implement.Product;
 using Ecommerce.Infrastructure.Implement.ProductType;
 using Ecommerce.Infrastructure.Implement.RoleUserRepo;
@@ -22,7 +22,7 @@ namespace Ecommerce.Infrastructure.Extention
             {
                 
                 // Configure your DbContext options here
-                options.UseSqlServer("Data Source=vantrong\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
+                options.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
             });
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IRoleUserRepository, RoleUserRepository>(); 
@@ -31,7 +31,7 @@ namespace Ecommerce.Infrastructure.Extention
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IProductTypeRespository, ProductTypeRespository>();
             services.AddTransient<ISalesRespository, SaleRespository>();
-            services.AddTransient<IFeedBackRepository, FeedbackRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
             return services;
         }
     }
