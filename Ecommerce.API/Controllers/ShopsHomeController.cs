@@ -16,7 +16,7 @@ namespace Ecommerce.API.Controllers
             _res = res;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] ViewProductRequest product, CancellationToken cancellationToken)
+        public async Task<IActionResult> Get([FromQuery] Guid idShop,[FromQuery] ViewProductRequest product, CancellationToken cancellationToken)
         {
             var obj = await _res.GetAll(new ViewProductRequest()
             {
@@ -25,7 +25,7 @@ namespace Ecommerce.API.Controllers
                 PageSize = product.PageSize,
                 Status = product.Status,
             }, cancellationToken);
-            var result = obj.Data.SkipWhile(x => x.Status == Domain.Enum.ProductStatus.Waiting);
+            var result = obj.Data.Where(x=>x.ShopId == idShop).SkipWhile(x => x.Status == Domain.Enum.ProductStatus.Waiting);
             
             return Ok(result);
         }
