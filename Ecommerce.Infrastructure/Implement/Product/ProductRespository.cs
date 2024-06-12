@@ -101,6 +101,7 @@ namespace Ecommerce.Infrastructure.Implement.Product
                                orderby p.CreatedTime descending
                                select new ProductDTO
                                {
+                                   ID = p.ID,
                                    ShopId = p.ShopId,
 
                                    ProductsTypeName = p.ProductTypes.ProductsTypeName,
