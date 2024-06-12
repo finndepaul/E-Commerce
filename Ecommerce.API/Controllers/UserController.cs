@@ -41,9 +41,9 @@ namespace Ecommerce.API.Controllers
         }
 
         [HttpGet("get-all")]
-        public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllUsers([FromQuery] ViewUserRequest request,CancellationToken cancellationToken)
         {
-            var users = await _userRepository.GetAllUsers(cancellationToken);
+            var users = await _userRepository.GetAllUsers(request, cancellationToken);
             return Ok(users);
         }
 

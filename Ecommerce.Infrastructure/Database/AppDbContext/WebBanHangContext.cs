@@ -54,7 +54,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 			//optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 			// Đăng
-			 optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+			 //optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
 			// Thế
 			//optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
@@ -64,7 +64,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 
 			// Phong
 
-			//optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+			optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 		}
 
