@@ -11,7 +11,9 @@ namespace Ecommerce.Infrastructure.Database.Configuration
             builder.ToTable("Address");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.UserAddress).IsRequired();
+            builder.Property(x => x.WardCode).IsRequired();
+            builder.Property(x => x.city).IsRequired();
+            builder.Property(x => x.district).IsRequired();
             builder.HasOne(x => x.User).WithMany(x => x.Addresses).HasForeignKey(x => x.CreatedBy);
 
         }

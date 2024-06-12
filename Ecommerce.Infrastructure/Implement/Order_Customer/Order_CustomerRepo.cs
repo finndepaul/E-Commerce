@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿ using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Ecommerce.Application.DataTransferObj.Oders;
 using Ecommerce.Application.Interface;
 using Ecommerce.Domain.Database.Entities;
@@ -13,65 +14,70 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Infrastructure.Implement.OrderResponsitory
 {
-    public class OrderResponsitory : IOderDetailRespository
+    public class Order_CustomerRepo : IOderDetailRespository
     {
         private readonly WebBanHangContext _context;
         private readonly IMapper _mapper;
-        public OrderResponsitory(WebBanHangContext context, IMapper mapper)
+        public Order_CustomerRepo(WebBanHangContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
-        public async Task<ErrorMessage> DeleteBill(Guid billId, CancellationToken cancellationToken)
-        {
-            var bill = await _context.Bill
-           .Include(b => b.BillDetails)
-           .FirstOrDefaultAsync(b => b.Id == billId && b.Status == EntityStatus.Active, cancellationToken);
 
-            if (bill == null)
+        public async Task<bool> CancelOrderDetail(Guid idOrderdetail, CancellationToken cancellationToken)
+        {
+            var Orderdetail = await _context.OrderDetail.FindAsync(idOrderdetail,cancellationToken);
+            Orderdetail.Status = OrderStatus.cancle;
+            _context.OrderDetail.Update(Orderdetail);
+
+           if(Orderdetail != null)
             {
-                return ErrorMessage.Faild;
+                var product = await _context.Product.FindAsync(Orderdetail.ProductID, cancellationToken);
+                product.Quantity += Orderdetail.NumberOfProduct;
+                _context.Product.Update(product);
             }
 
-            bill.Status = EntityStatus.Deleted;
-            foreach (var billDetail in bill.BillDetails)
+            _context.SaveChanges();
+            return true;
+        }
+
+        public async Task<bool> CreateOrderDetail(OrderDetails request, CancellationToken cancellationToken)
+        {
+            try
             {
-                billDetail.Status = EntityStatus.Deleted;
-                var product = await _context.Product.FirstOrDefaultAsync(p => p.ID == billDetail.ProductID, cancellationToken);
-                if (product != null)
+                request.ID = Guid.NewGuid();
+                request.CreatedTime = DateTime.Now;
+                var result = await _context.OrderDetail.AddAsync(request,cancellationToken);
+
+                var product = await _context.Product.FindAsync(request.ProductID,cancellationToken);
+                if(product.Quantity < request.NumberOfProduct) 
                 {
-                    product.Quantity += billDetail.NumberOfProduct;
-                    _context.Product.Update(product);
+                    return false;
                 }
+                product.Quantity -= request.NumberOfProduct;
+                _context.Product.Update(product);
+
+                _context.SaveChanges();
+                return true;
             }
-
-            _context.Bill.Update(bill);
-            await _context.SaveChangesAsync(cancellationToken);
-            return ErrorMessage.Successfull;
-        }
-    
-
-        public async Task<BillDto> GetBillById(Guid billId, CancellationToken cancellationToken)
-        {
-            var bill = await _context.Bill
-           .Include(b => b.BillDetails)
-           .ThenInclude(bd => bd.Products)
-           .FirstOrDefaultAsync(b => b.Id == billId && b.Status == EntityStatus.Active, cancellationToken);
-
-            if (bill == null)
+            catch
             {
-                return null;
+                return false;
             }
-
-            var billDto = _mapper.Map<BillDto>(bill);
-            return billDto;
         }
 
-        public async Task<bool>   Purchase(PurchaseRequest request, CancellationToken cancellationToken)
+        public async Task<List<OrderDetailDto>> GetAllOrdersOfID(Guid ID, CancellationToken cancellationToken)
+        {
+            var OrderDetails = await _context.OrderDetail.Where(x => x.CreatedBy == ID).ProjectTo<OrderDetailDto>(_mapper.ConfigurationProvider).ToListAsync();
+            return OrderDetails;
+        }
+
+
+        public async Task<bool> Purchase(PurchaseRequest request, CancellationToken cancellationToken)
         {
             var cartDetails = await _context.CartDetail
             .Include(cd => cd.Products)
-            .Where(cd => request.CartDetailIds.Contains(cd.Id) && cd.Status == EntityStatus.Active)
+            .Where(cd => cd.Status == EntityStatus.Active)
             .ToListAsync(cancellationToken);
 
             if (cartDetails == null || !cartDetails.Any())

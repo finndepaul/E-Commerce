@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.DataTransferObj.Oders
 {
-    public class BillDetailDto
+    public class OrderDetailCreateRequest
     {
-        public Guid Id { get; set; }
         public Guid ProductID { get; set; }
-        public string ProductName { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public decimal Shipfee { get; set; }
         public decimal Price { get; set; }
         public int NumberOfProduct { get; set; }
     }

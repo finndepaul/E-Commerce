@@ -19,6 +19,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         public DbSet<BillDetails> BillDetail { get; set; }
         public DbSet<Bills> Bill { get; set; }
         public DbSet<Carts> Cart { get; set; }
+        public DbSet<OrderDetails> OrderDetail { get; set; }
         public DbSet<CartDetails> CartDetail { get; set; }
         public DbSet<PayHistories> PayHistory { get; set; }
         public DbSet<PaymentExpressions> PaymentExpression { get; set; }
@@ -35,6 +36,8 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         public DbSet<Roles> Role { get; set; }
         public DbSet<RoleUser> RoleUsers { get; set; }
         public DbSet<Shops> Shops { get; set; }
+        public DbSet<Feedbacks> Feedbacks { get; set; }
+
         //Mẫu
         public DbSet<Example> Examples { get; set; }
         #endregion
@@ -43,13 +46,15 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Đông
-            // optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
+            //optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+
 
             // Hoàng
             //optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
             // Đăng
-            //optionsBuilder.UseSqlServer("Server=SURINRIN\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+           // optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
             // Thế
             //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
@@ -58,7 +63,7 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
             optionsBuilder.UseSqlServer("Server=vantrong\\SQLEXPRESS;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
             // Phong
-            //optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Data Source=PHONGKEDAY2\\PHONGKE2004;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -271,21 +276,21 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 
             };
             modelBuilder.Entity<Carts>(b => { b.HasData(cartData); });
-            var addressData = new List<Address>()
+          /*  var addressData = new List<Address>()
             {
                 new Address {
                     Id = Guid.NewGuid(),
                     CreatedBy = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                     Status = Domain.Enum.EntityStatus.Active,
-                    UserAddress = "123 Streat",
+                    //UserAddress = "123 Streat",
                 }, new Address {
                     Id = Guid.NewGuid(),
                     CreatedBy = Guid.Parse("ef578dbc-71f7-474f-a6eb-84deb7f15c15"),
                     Status = Domain.Enum.EntityStatus.Active,
-                    UserAddress = "345 Streat",
+                    //UserAddress = "345 Streat",
                 },
             };
-            modelBuilder.Entity<Address>(b => { b.HasData(addressData); });
+            modelBuilder.Entity<Address>(b => { b.HasData(addressData); });*/
             var productTypeData = new List<ProductTypes>()
             {
                 new ProductTypes()

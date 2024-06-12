@@ -1,6 +1,9 @@
-﻿using Ecommerce.Application.Interface;
+﻿using Ecommerce.Application.DataTransferObj.Products;
+using Ecommerce.Application.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ecommerce.API.Controllers
 {
@@ -14,17 +17,31 @@ namespace Ecommerce.API.Controllers
         {
             _res = res;
         }
+        [HttpGet("get-product")]
+        public async Task<IActionResult> GetAll([FromQuery] ViewProductRequest product, CancellationToken cancellationToken)
+        {
+            var result = await _res.GetAll(new ViewProductRequest()
+            {
+                NameProduct = product.NameProduct,
+                PageNumber = product.PageNumber,
+                PageSize = product.PageSize,
+                Status = Domain.Enum.ProductStatus.Waiting,
+            }, cancellationToken);
+            //var a = result.Data.SkipWhile(x=>x.Status == Domain.Enum.ProductStatus.Waiting)
+            //var result = await _res.GetAll(product, cancellationToken);
+            return Ok(result);
+        }
         [HttpPost("inspect-product")]
-        public async Task<IActionResult> InspectProduct(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> InspectProduct(Guid productId, CancellationToken cancellationToken)
         {
             try
             {
-                var model = await _res.ProductReview(id, cancellationToken);
-                return Ok();
+                var model = await _res.ProductReview(productId, cancellationToken);
+                return Ok(model);
             }
             catch (Exception)
             {
-                return BadRequest();
+                return BadRequest("Lỗi");
             }
         }
     }
