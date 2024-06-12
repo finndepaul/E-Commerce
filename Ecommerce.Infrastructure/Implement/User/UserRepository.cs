@@ -105,16 +105,13 @@ namespace Ecommerce.Infrastructure.Implement.User
         public async Task<bool> DeleteUser(Guid id, CancellationToken cancellationToken)
         {
             
-            var user = await _context.User.FirstOrDefaultAsync( x => x.ID == id ,cancellationToken);
-            if (user != null)
-            {
-                _context.User.Remove(user);
-                await _context.SaveChangesAsync();
-                return true;
-            }
+            var user = await _context.User.FindAsync(id,cancellationToken);
+            if(user == null)return false;
+            user.Deleted = true;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+            return true;
 
-
-                return false;
         }
     }
 }
