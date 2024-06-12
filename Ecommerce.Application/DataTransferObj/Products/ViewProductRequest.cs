@@ -12,5 +12,11 @@ namespace Ecommerce.Application.DataTransferObj.Products
     {
         public string? NameProduct { get; set; }
         public ProductStatus? Status { get; set; }
+        public Guid? ProductTypeID { get; set; }
+        public decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+        public DateTimeOffset? CreatedTimeStar { get; set; }
+        public DateTimeOffset? CreatedTimeEnd { get; set; }
     }
+
 }

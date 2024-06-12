@@ -27,7 +27,7 @@ namespace Ecommerce.Infrastructure.Extention
             {
 
                 // Configure your DbContext options here
-                options.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
+                options.UseSqlServer("Data Source=vantrong\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True;Trust Server Certificate=True");
             });
             services.AddTransient<IExampleRepository, ExampleRepository>();
             services.AddTransient<IRoleUserRepository, RoleUserRepository>();
