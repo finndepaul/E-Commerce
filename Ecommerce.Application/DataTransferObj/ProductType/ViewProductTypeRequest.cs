@@ -10,6 +10,6 @@ namespace Ecommerce.Application.DataTransferObj.ProductType
 {
     public class ViewProductTypeRequest :PaginationRequest
     {
-        public string ProductsTypeName { get; set; }
+        public string? ProductsTypeName { get; set; }
     }
 }

@@ -18,18 +18,13 @@ namespace Ecommerce.API.Controllers
             _reps = reps;
             _maper = maper;
         }
-        [HttpGet("get-productType")]
+        [HttpGet("getall-productType")]
         public async Task<IActionResult> Get([FromQuery]ViewProductTypeRequest request, CancellationToken cancellationToken)
         {
-            try
-            {
+      
                 var result = await _reps.GetAll(request, cancellationToken);
                 return Ok(result);
-            }
-            catch (Exception ex) 
-            {
-                return BadRequest(ex.Message);
-            }
+        
         }
         [HttpPost("create-productType")]
         public async Task<IActionResult> CreateProductType([FromBody]ProductTypeCreateRequest request, CancellationToken cancellationToken)
