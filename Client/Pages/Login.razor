@@ -1,5 +1,7 @@
-﻿@page "/Login"
+﻿@page "/"
 @inject NavigationManager _navi
+@layout ZeroLayout
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using Ecommerce.Application.DataTransferObj.User.Ultilities
 @using Newtonsoft.Json
 @using System.Text.Json
@@ -19,33 +21,34 @@
 		</MudPaper>
 	</MudItem>
 </MudGrid>
-@code {
+	@code {
 	string US;
 	string PW;
 	HttpClient http = new HttpClient();
 	LoginRequest request = new LoginRequest();
 	private async Task HandleLogin()
-	{		
-		
+	{
 		request.UserName = US;
 		request.Password = PW;
 		var result = await http.PostAsJsonAsync("https://localhost:7140/api/Login/login", request);
 		var content = await result.Content.ReadAsStringAsync();
-		Console.WriteLine($"Token: {content}");
 		var handler = new JwtSecurityTokenHandler().ReadJwtToken(content);
 		// Lấy thông tin từ token
 		var claim = handler.Claims;
-		var name = claim.FirstOrDefault(c => c.Type == "name")?.Value;
-		var nameidentifier = claim.FirstOrDefault(c => c.Type == "nameidentifier")?.Value;
-		
-		
-	
-
-		// Console.WriteLine($"nameidentifier: {id}");
-		// Console.WriteLine($"name: {name}");
-		// Console.WriteLine($"Role: {role}");
-		// Console.WriteLine($"Issued At: {issuedAt}");
-		
-
+		var name = claim.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+		var nameidentifier = claim.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
+		var role = claim.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
+		await localStorage.SetItemAsync("userId", nameidentifier.Trim());
+		await localStorage.SetItemAsync("userName", name.Trim());
+		//Mẫu get
+		//await localStorage.GetItemAsync<string>("userId");
+		if (role.Trim().Equals("Admin"))
+		{
+			_navi.NavigateTo("/admindashboard");
+		}
+		else
+		{
+			_navi.NavigateTo("/customerhome");
+		}
 	}
 }

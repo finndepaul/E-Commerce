@@ -45,16 +45,16 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			// Đông
+			//Đông
+			optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
-			//optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 
 			// Hoàng
 			//optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 			// Đăng
-			// optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
+			//optionsBuilder.UseSqlServer("Server=SURINRIN\\SQLEXPRESS01;Database=WebBanHang;Trusted_Connection=True;TrustServerCertificate=True");
 
 			// Thế
 			//optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");

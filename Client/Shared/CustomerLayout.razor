@@ -1,0 +1,70 @@
+﻿@using Blazored.LocalStorage
+@inherits LayoutComponentBase
+@inject ILocalStorageService localStorage
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudAppBar Class="container-fluid justify-content-center" Color="Color.Primary" Fixed="false">
+    <MudContainer Class="container d-flex">
+        <MudContainer Style="width:50%" Class="container-fluid d-flex justify-content-start align-items-center ms-0">
+            <MudItem Class="container fs-3">
+                <a Href="/customerhome" class="text-light">
+                    <i class="fa-solid fs-3 fa-headphones"></i>
+                    E-Commerce
+                </a>
+            </MudItem>
+        </MudContainer>
+        <MudContainer Style="width:45%" Class="container-fluid d-flex justify-content-start align-items-center me-0">
+            <MudItem Class="container">
+                <i class="fa-solid fa-bell"></i>
+                Thông báo
+            </MudItem>
+            <MudItem Class="container">
+                <i class="fa-solid fa-book"></i>
+                Đơn Hàng
+            </MudItem>
+            <MudItem Class="container">
+                <a Href="/cart" class="text-light ">
+                    <i class="fa-solid fa-book"></i>
+                    Giỏ Hàng
+                </a>
+            </MudItem>
+            @if (storedValue != null)
+            {
+                <MudItem Class="container">
+                    <i class="fa-solid fa-user"></i>
+                    Hello, @storedValue
+                </MudItem> 
+                <MudItem Class="container">
+                    <i class="fa-solid fa-user"></i>
+                    Đăng Xuất
+                </MudItem>
+            }
+            else
+            {
+                <MudItem Class="container" >
+                    <i class="fa-solid fa-user"></i>
+                    Đăng nhập
+                </MudItem>
+            }
+        </MudContainer>
+    </MudContainer>
+</MudAppBar>
+
+<MudMainContent Style="min-height:1000px" Class="pt-2">
+    @Body
+</MudMainContent>
+
+<MudAppBar Class="container-fluid justify-content-center" Color="Color.Primary" Fixed="false">
+</MudAppBar>
+
+@code {
+    private string storedValue;
+
+    protected override async Task OnInitializedAsync()
+    {
+        storedValue = await localStorage.GetItemAsync<string>("userName");
+    }
+}

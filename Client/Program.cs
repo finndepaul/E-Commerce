@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Client.Data;
 using Client.IServices;
 using Client.Services;
@@ -6,15 +7,16 @@ using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddTransient<ICustomerServices, CustomerService>();
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMudServices();
-
 
 var app = builder.Build();
 
