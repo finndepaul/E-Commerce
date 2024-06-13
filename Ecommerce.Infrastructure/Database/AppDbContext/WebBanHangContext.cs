@@ -45,8 +45,8 @@ namespace Ecommerce.Infrastructure.Database.AppDbContext
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			// Đông
-			//optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
+			//Đông
+			optionsBuilder.UseSqlServer("Data Source=DESKTOP-V6M0EF7\\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True; TrustServerCertificate=True");
 
 
 			// Hoàng
