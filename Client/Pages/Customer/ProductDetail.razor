@@ -1,0 +1,63 @@
+﻿@page "/ProductDetail/{id:guid}"
+@using Client.IServices
+@using Ecommerce.Application.DataTransferObj.Products
+@layout CustomerLayout
+@inject ICustomerServices ICus
+
+
+@if(productDetail != null)
+{
+    <MudContainer Class="container">
+        <MudCard Class="p-4">
+            <MudCardContent>
+                <MudText Class="h4 mt-0 mb-2" Subheader="true">
+                    @productDetail.NameProduct
+                </MudText>
+
+                <div class="d-flex justify-content-between mb-2">
+                    <MudText Class="text-muted">
+                        Price: @productDetail.Price.ToString("C")
+                    </MudText>
+                    <MudChip Variant="Variant.Filled" Color="Color.Success">
+                        In Stock
+                    </MudChip>
+                </div>
+
+                <MudText Class="mb-4">
+                    @productDetail.DescriptionProduct
+                </MudText>
+
+                <div class="d-flex justify-content-between">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary">
+                        Add to Cart
+                    </MudButton>
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary">
+                        Buy Now
+                    </MudButton>
+                </div>
+            </MudCardContent>
+        </MudCard>
+    </MudContainer>
+}
+
+@code {
+    [Parameter]
+    public Guid id { get; set; }
+    private ProductDTO productDetail = new ProductDTO();
+
+    protected override async Task OnInitializedAsync()
+    {
+        productDetail = await ICus.GetProductByID(id);
+    }
+
+    private void OnAddToCart()
+    {
+        // Implement logic to add the product to cart
+    }
+
+    private void OnBuyNow()
+    {
+        // Implement logic to initiate the immediate purchase process
+    }
+}
+
