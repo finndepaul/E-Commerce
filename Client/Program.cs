@@ -8,6 +8,7 @@ using MudBlazor.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddTransient<ICustomerServices, CustomerService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

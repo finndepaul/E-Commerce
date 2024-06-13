@@ -1,0 +1,153 @@
+﻿@page "/"
+
+@using Client.IServices
+@using Ecommerce.Application.DataTransferObj.Products
+@layout CustomerLayout
+@inject NavigationManager naviga;
+@inject ICustomerServices ICus
+
+<MudContainer Class="container d-flex justify-content-between p-0">
+    <MudContainer Style="width:64%" Class="p-0">
+        <MudCarousel Class="mud-width-full" Style="height:300px;" ShowArrows="@arrows" ShowBullets="false" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+            <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                <div class="d-flex" style="height:100%">
+                    <img class="fit-img" src="./images/banner-02.jpg" alt="Alternate Text" />
+                </div>
+            </MudCarouselItem>
+            <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                <div class="d-flex" style="height:100%">
+                    <img class="fit-img" src="./images/banner-01.jpg" alt="Alternate Text" />
+                </div>
+            </MudCarouselItem>
+        </MudCarousel>
+    </MudContainer>
+    <MudContainer Style="height:100px;width:35%" Class="p-0">
+        <MudContainer Class="p-0">
+            <MudCarousel Class="mud-width-full" Style="height:148px;" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+                <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                    <div class="d-flex" style="height:100%">
+                        <img class="card-img" src="./images/banner-02.jpg" alt="Alternate Text" />
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                    <div class="d-flex" style="height:100%">
+                        <img class="card-img" src="./images/banner-01.jpg" alt="Alternate Text" />
+                    </div>
+                </MudCarouselItem>
+            </MudCarousel>
+        </MudContainer>
+        <MudContainer Class="p-0 mt-1">
+            <MudCarousel Class="mud-width-full" Style="height:148px" ShowArrows="false" ShowBullets="false" EnableSwipeGesture="@enableSwipeGesture" AutoCycle="@autocycle" TData="object">
+                <MudCarouselItem Transition="transition" Color="@Color.Primary">
+                    <div class="d-flex" style="height:100%">
+                        <img class="card-img" src="./images/banner-02.jpg" alt="Alternate Text" />
+                    </div>
+                </MudCarouselItem>
+                <MudCarouselItem Transition="transition" Color="@Color.Secondary">
+                    <div class="d-flex" style="height:100%">
+                        <img class="card-img" src="./images/banner-01.jpg" alt="Alternate Text" />
+                    </div>
+                </MudCarouselItem>
+            </MudCarousel>
+        </MudContainer>
+    </MudContainer>
+</MudContainer>
+
+<MudContainer Style="background-color:rgba(89,74,226,1)" Class="container d-flex btn d-flex justify-content-center align-items-center mt-2">
+    <h3 class="text-light">
+        Gợi Ý Sản Phẩm
+    </h3>
+</MudContainer> 
+
+<MudContainer Style="background-color:rgba(89,74,226,1)" Class="container d-flex btn d-flex justify-content-around align-items-center mt-2">
+    <MudContainer>
+        <MudTextField Class="bg-light" Style="width:100%;height:90%" T="String" Placeholder="  Tìm kiếm ...."></MudTextField>
+    </MudContainer>
+   
+    <MudContainer Style="width:20%">
+        <MudSelect  Margin="Margin.Dense" T="string" Label="Thời Gian" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Tyrannosaur")" />
+            <MudSelectItem Value="@("Triceratops")" />
+            <MudSelectItem Value="@("Henon Rex")" />
+        </MudSelect>
+    </MudContainer>
+    <MudContainer Style="width:20%">
+        <MudSelect  Margin="Margin.Dense" T="string" Label="Giá tiền" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Tyrannosaur")" />
+            <MudSelectItem Value="@("Triceratops")" />
+            <MudSelectItem Value="@("Henon Rex")" />
+        </MudSelect>
+    </MudContainer>
+    <MudContainer Style="width:20%">
+        <MudSelect  Margin="Margin.Dense" T="string" Label="Loại" Variant="Variant.Outlined">
+            <MudSelectItem Value="@("Tyrannosaur")" />
+            <MudSelectItem Value="@("Triceratops")" />
+            <MudSelectItem Value="@("Henon Rex")" />
+        </MudSelect>
+    </MudContainer>
+</MudContainer>
+
+<MudContainer Class="container-fluid justify-content-center p-0 mt-4">
+    <MudGrid Class="container d-flex justify-content-start m-0 mb-2 p-0">
+        @if(rs.Data != null)
+        {
+            foreach(var i in rs.Data)
+            {
+                <MudButton Style="width:25%" OnClick="()=>Detail(i.ID)" Class="bg-light btn container-fluid justify-content-center">
+                    <MudPaper Height="300px" Width="100%">
+                        <img Class="rounded-top rounded-2" style="width:100%" Src="./images/@i.Images[0]" Height="230" />
+                        <MudCardContent>
+                            <MudText Class="mt-2" Style="font-weight: bold;">
+                                @i.NameProduct
+                            </MudText>
+                        </MudCardContent>
+                    </MudPaper>
+                </MudButton>
+            }
+        }
+
+    </MudGrid>
+</MudContainer>
+
+<MudContainer Class="container-fluid d-flex justify-content-center mb-2">
+    <MudPagination Color="Color.Primary" Count="@Nop" SelectedChanged="@OnPaginationSelectedChanged" />
+</MudContainer>
+
+@code {
+    private bool arrows = true;
+    private bool bullets = true;
+    private bool enableSwipeGesture = true;
+    private bool autocycle = true;
+    private Transition transition = Transition.Slide;
+
+    int Nop = 1;
+    public ViewProductRequest request = new ViewProductRequest();
+    Ecommerce.Application.ValueObj.Pagination.PaginationResponse<ProductDTO> rs = new Ecommerce.Application.ValueObj.Pagination.PaginationResponse<ProductDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+    } 
+
+    public async Task Load()
+    {
+        rs.Data = null;
+        request.PageNumber = Nop;
+        rs = await ICus.GetAllProduct(request);
+        if (rs.HasNext)
+        {
+            Nop += 1;
+        }
+    }
+
+    public async Task OnPaginationSelectedChanged(int selectedPage)
+    {
+        Nop = selectedPage;
+        await Load();
+    }
+
+    public async Task Detail(Guid id)
+    {
+        naviga.NavigateTo($"/ProductDetail/{id}");
+    }
+}
