@@ -24,9 +24,9 @@ else
                 <MudTd DataLabel="Sign" Class="mr-5">@context.ProductPrice</MudTd>
                 <MudTd DataLabel="Sign" Class="mr-5">@context.NumberOfProduct</MudTd>
                 <MudTd DataLabel="Sign" Class="mr-5">
-                <MudButton OnClick="() => Checkout(context.ProductID,context.Id,context.ProductPrice,context.NumberOfProduct)" Class="btn btn-success">
+                <MudButton MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Update" Color="Color.Secondary" @onclick="() => Checkout(context.ProductID,context.Id,context.ProductPrice,context.NumberOfProduct)">
                         Thanh Toán
-                    </MudButton>
+                </MudButton>
                 </MudTd>
             </RowTemplate>
             <PagerContent>
@@ -36,11 +36,5 @@ else
             </PagerContent>
         </MudTable>
     // @ref="@_table" để pagination, RowsPerPage= số hàng muốn hiện
-   
-}
-
-@code{
-    
-
    
 }

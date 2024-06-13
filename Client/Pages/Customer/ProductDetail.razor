@@ -1,13 +1,11 @@
 ﻿@page "/ProductDetail/{id:guid}"
-@using Blazored.LocalStorage
 @using Client.IServices
-@using Ecommerce.Application.DataTransferObj.Carts
 @using Ecommerce.Application.DataTransferObj.Products
 @layout CustomerLayout
 @inject ICustomerServices ICus
 
 
-@if(productDetail != null)
+@if (productDetail != null)
 {
     <MudContainer Class="container">
         <MudCard Class="p-4">
@@ -28,9 +26,9 @@
                 <MudText Class="mb-4">
                     @productDetail.DescriptionProduct
                 </MudText>
-                <MudNumericField @bind-Value="request.NumberOfProduct" For="@(() => productDetail.Quantity)" Class="w-25" Label="Quantity" Variant="Variant.Text" Min="0" Max="10" />
+
                 <div class="d-flex justify-content-between">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="()=>OnAddToCart()">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary">
                         Add to Cart
                     </MudButton>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary">
@@ -45,34 +43,16 @@
 @code {
     [Parameter]
     public Guid id { get; set; }
-
-    private CreateCartDetailRequest request = new();
-
-    [Inject] NavigationManager _navigationManager { get; set; }
-
-    [Inject] ILocalStorageService _local { get; set; }
-
     private ProductDTO productDetail = new ProductDTO();
-
-    public int IntValue { get; set; }
-
-    private string userId;
 
     protected override async Task OnInitializedAsync()
     {
-        userId = await _local.GetItemAsync<string>("userId");
         productDetail = await ICus.GetProductByID(id);
     }
 
-    private async void OnAddToCart()
+    private void OnAddToCart()
     {
-        request.UserID = Guid.Parse(userId);
-        var model = await ICus.AddToCart(request);
-        // tạo mới rồi tự trờ về trang
-        if (model)
-        {
-            _navigationManager.NavigateTo("https://localhost:7167/cart");
-        }
+        // Implement logic to add the product to cart
     }
 
     private void OnBuyNow()
@@ -80,4 +60,3 @@
         // Implement logic to initiate the immediate purchase process
     }
 }
-
