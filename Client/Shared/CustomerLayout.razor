@@ -1,0 +1,47 @@
+﻿@inherits LayoutComponentBase
+
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+
+<MudAppBar Class="container-fluid justify-content-center" Color="Color.Primary" Fixed="false">
+    <MudContainer Class="container d-flex">
+        <MudContainer Style="width:50%" Class="container-fluid d-flex justify-content-start align-items-center ms-0">
+            <MudItem Class="container fs-3">
+                <i class="fa-solid fs-3 fa-headphones"></i>
+                THEDZ
+            </MudItem>
+           @*  <MudItem Class="container">
+                <MudTextField Style="width:100%;" Class="bg-light rounded-3" T="string" Placeholder="   THE VI DAI ...">
+
+                </MudTextField>
+            </MudItem> *@
+        </MudContainer>
+        <MudContainer Style="width:45%" Class="container-fluid d-flex justify-content-start align-items-center me-0">
+            <MudItem Class="container">
+                <i class="fa-solid fa-bell"></i>
+                Thông báo
+            </MudItem>
+            <MudItem Class="container">
+                <i class="fa-solid fa-book"></i>
+                Đơn Hàng
+            </MudItem> 
+            <MudItem Class="container">
+                <i class="fa-solid fa-book"></i>
+                Giỏ Hàng
+            </MudItem>
+            <MudItem Class="container">
+                <i class="fa-solid fa-user"></i>
+                Đăng nhập
+            </MudItem>
+        </MudContainer>
+    </MudContainer>
+</MudAppBar> 
+
+<MudMainContent Style="min-height:1000px" Class="pt-2">
+        @Body
+</MudMainContent>
+<MudAppBar Class="container-fluid justify-content-center" Color="Color.Primary" Fixed="false">
+</MudAppBar>
