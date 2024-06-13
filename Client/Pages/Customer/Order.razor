@@ -1,0 +1,38 @@
+﻿@page "/Order/{id:guid}"
+@using Client.IServices
+@using Ecommerce.Application.DataTransferObj.Oders
+
+@layout CustomerLayout
+@inject NavigationManager naviga;
+@inject ICustomerServices ICus
+
+@if(lst != null)
+{
+    <MudContainer Class="container-fluid d-flex justify-content-center">
+        <MudDataGrid Items="@lst">
+            <Columns>
+                <PropertyColumn Property="x => x.ProductName" Title="Nr" />
+                <PropertyColumn Property="x => x.NumberOfProduct" />
+                <PropertyColumn Property="x => x.Shipfee" />
+                <PropertyColumn Property="x => x.Price" />
+                <PropertyColumn Property="x => x.Price + x.Shipfee" Title="Molar mass" />
+            </Columns>
+        </MudDataGrid>
+    </MudContainer>
+}
+
+@code{
+    List<OrderDetailDto> lst = new List<OrderDetailDto>();
+    [Parameter]
+    public Guid id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+    }
+
+    public async Task Load()
+    {
+        lst = await ICus.GetOrderDetailAll(id);
+    }
+}
