@@ -74,11 +74,11 @@ namespace Ecommerce.API.Controllers
         }
 
         [HttpDelete("delete-user")]
-        public async Task<IActionResult> DeleteUser(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteUser(UserDeleteResquest resquest, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _userRepository.DeleteUser(id, cancellationToken);
+                var result = await _userRepository.DeleteUser(resquest.ID, cancellationToken);
                 
                     return Ok(result);
                 
