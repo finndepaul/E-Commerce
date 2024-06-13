@@ -1,5 +1,6 @@
 ﻿using Ecommerce.Application.DataTransferObj.Carts;
 using Ecommerce.Application.DataTransferObj.Oders;
+using Ecommerce.Application.DataTransferObj.Carts;
 using Ecommerce.Application.DataTransferObj.Products;
 using Ecommerce.Application.ValueObj.Pagination;
 
@@ -11,5 +12,9 @@ namespace Client.IServices
         Task<ProductDTO> GetProductByID(Guid id);
         Task<List<OrderDetailDto>> GetOrderDetailAll(Guid id);
         Task<OrderDetailDto> GetOrderDetailById(Guid id,Guid USer);
+
+        // Cart
+        Task<PaginationResponse<CartDetailDTO>> GetCart(Guid id);
+        Task<bool> AddToCart(CreateCartDetailRequest request);
     }
 }

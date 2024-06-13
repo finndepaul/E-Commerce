@@ -1,9 +1,11 @@
 ﻿using Client.IServices;
 using Ecommerce.Application.DataTransferObj.Oders;
+using Ecommerce.Application.DataTransferObj.Carts;
 using Ecommerce.Application.DataTransferObj.Products;
 using Ecommerce.Application.ValueObj.Pagination;
 using Ecommerce.Domain.Database.Entities;
 using Ecommerce.Domain.Enum;
+using static System.Net.WebRequestMethods;
 
 namespace Client.Services
 {
@@ -38,6 +40,19 @@ namespace Client.Services
             var rs = await _httpClient.GetFromJsonAsync<PaginationResponse<ProductDTO>>($"https://localhost:7140/api/Product/getall-product?Status=1&PageNumber=1&PageSize=1000");
             var obj = rs.Data.FirstOrDefault(x => x.ID == id);
             return obj;
+        }
+
+        // Cart
+        public async Task<PaginationResponse<CartDetailDTO>> GetCart(Guid id)
+        {
+            var result = await _httpClient.GetFromJsonAsync<PaginationResponse<CartDetailDTO>>($"https://localhost:7140/api/Cart/get-all?CartID={id}");
+            return result;
+        }
+
+        public async Task<bool> AddToCart(CreateCartDetailRequest request)
+        {
+            var result = await _httpClient.PostAsJsonAsync("https://localhost:7140/api/Cart/create-cartdetails", request);
+            return result.IsSuccessStatusCode;
         }
     }
 }
