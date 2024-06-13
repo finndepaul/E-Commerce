@@ -38,14 +38,17 @@
 		var name = claim.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
 		var nameidentifier = claim.FirstOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value;
 		var role = claim.FirstOrDefault(c => c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")?.Value;
-		await localStorage.SetItemAsync("userId", nameidentifier);
-		await localStorage.SetItemAsync("userName", name);
+		await localStorage.SetItemAsync("userId", nameidentifier.Trim());
+		await localStorage.SetItemAsync("userName", name.Trim());
 		//Mẫu get
 		//await localStorage.GetItemAsync<string>("userId");
-		if (role == "Admin")
+		if (role.Trim().Equals("Admin"))
 		{
 			_navi.NavigateTo("/admindashboard");
 		}
-		_navi.NavigateTo("/client");
+		else
+		{
+			_navi.NavigateTo("/customerhome");
+		}
 	}
 }
