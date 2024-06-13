@@ -41,6 +41,10 @@ namespace Ecommerce.Infrastructure.Implement.Product
                 {
                     return false ;
                 }
+                if(products.Quantity <= 0)
+                {
+                    return false;
+                }
                 else
                 {
                     products.ID = Guid.NewGuid();
@@ -115,6 +119,7 @@ namespace Ecommerce.Infrastructure.Implement.Product
                                    ShopName = p.Shops.ShopName,
                                    Images = p.Images,
                                    Price = p.Price,
+                                   Quantity = p.Quantity,
                                    NameProduct = p.NameProduct,
                                    DescriptionProduct = p.DescriptionProduct,
                                    Status = p.Status,

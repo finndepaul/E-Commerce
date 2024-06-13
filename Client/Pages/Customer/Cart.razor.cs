@@ -45,7 +45,7 @@ namespace Client.Pages.Customer
             Request.Shipfee = 20000;
             Request.Price = price*Request.NumberOfProduct;
 
-            var rs = await _ser.CreateBill(Request);
+            var rs = await _ser.CreateBill(Request);          
         }
 
         private void PageChanged(int i)
