@@ -1,5 +1,6 @@
 ﻿@page "/ProductDetail/{id:guid}"
 @using Client.IServices
+@using Ecommerce.Application.DataTransferObj.Carts
 @using Ecommerce.Application.DataTransferObj.Products
 @layout CustomerLayout
 @inject ICustomerServices ICus
@@ -26,9 +27,9 @@
                 <MudText Class="mb-4">
                     @productDetail.DescriptionProduct
                 </MudText>
-
+                <MudNumericField @bind-Value="request.NumberOfProduct" For="@(() => productDetail.Quantity)" Class="w-25" Label="Quantity" Variant="Variant.Text" Min="0" Max="10" />
                 <div class="d-flex justify-content-between">
-                    <MudButton Variant="Variant.Filled" Color="Color.Primary">
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="()=>OnAddToCart()">
                         Add to Cart
                     </MudButton>
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary">
@@ -43,16 +44,34 @@
 @code {
     [Parameter]
     public Guid id { get; set; }
+
+    private CreateCartDetailRequest request = new();
+
+    [Inject] NavigationManager _navigationManager { get; set; }
+
+    [Inject] ILocalStorageService _local { get; set; }
+
     private ProductDTO productDetail = new ProductDTO();
+
+    public int IntValue { get; set; }
+
+    private string userId;
 
     protected override async Task OnInitializedAsync()
     {
+        userId = await _local.GetItemAsync<string>("userId");
         productDetail = await ICus.GetProductByID(id);
     }
 
-    private void OnAddToCart()
+    private async void OnAddToCart()
     {
-        // Implement logic to add the product to cart
+        request.UserID = Guid.Parse(userId);
+        var model = await ICus.AddToCart(request);
+        // tạo mới rồi tự trờ về trang
+        if (model)
+        {
+            _navigationManager.NavigateTo("https://localhost:7167/cart");
+        }
     }
 
     private void OnBuyNow()
