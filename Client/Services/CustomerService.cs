@@ -54,5 +54,17 @@ namespace Client.Services
             var result = await _httpClient.PostAsJsonAsync("https://localhost:7140/api/Cart/create-cartdetails", request);
             return result.IsSuccessStatusCode;
         }
+
+        public async Task<bool> CreateBill(OrderDetailCreateRequest request)
+        {
+            var rs = await _httpClient.PostAsJsonAsync($"https://localhost:7140/api/Order/createorderdetail?ProductID={request.ProductID}&CreatedBy={request.CreatedBy}&Shipfee=20000&Price={request.Price}&NumberOfProduct={request.NumberOfProduct}",request);
+            return rs.IsSuccessStatusCode;
+        }
+
+        public Task<bool> DeleteCartDetail(Guid id ,Guid User)
+        {
+            var rs = _httpClient.GetFromJsonAsync<bool>($"https://localhost:7140/api/Cart/remove-cart?CartDetailId={id}&UserID={User}");
+            return rs;
+        }
     }
 }
