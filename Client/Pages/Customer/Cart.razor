@@ -1,8 +1,37 @@
 ﻿@page "/cart"
 @layout CustomerLayout
 
-<h3>Cart</h3>
+<h3 class="d-flex justify-content-center mt-3 mb-3">Cart</h3>
 
-@code {
+@if (list == null)
+{
+    <div Class="d-flex justify-center mt-3">
+        <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+    </div>
+}
+else
+{
 
+    <div class="d-flex justify-end">
+    </div>
+    // @ref="@_table" để pagination, RowsPerPage= số hàng muốn hiện
+    <MudTable @ref="@_table" RowsPerPage="5" Items="@list.Data" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+        <HeaderContent>
+            <MudTh>Product Name</MudTh>
+            <MudTh>Product Price</MudTh>
+            <MudTh>Quantity</MudTh>
+            <MudTh>Total Money</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.ProductName</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.ProductPrice</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.NumberOfProduct</MudTd>
+            <MudTd DataLabel="Sign" Class="mr-5">@context.TotalMoney</MudTd>         
+        </RowTemplate>
+        <PagerContent>
+            <div class="d-flex justify-center">
+                <MudPagination SelectedChanged="PageChanged" Count="@((_table.GetFilteredItemsCount() + _table.RowsPerPage - 1) / _table.RowsPerPage)" Class="pa-4" />
+            </div>
+        </PagerContent>
+    </MudTable>
 }
