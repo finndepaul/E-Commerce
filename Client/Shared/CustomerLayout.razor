@@ -22,8 +22,11 @@
                 Thông báo
             </MudItem>
             <MudItem Class="container">
-                <i class="fa-solid fa-book"></i>
-                Đơn Hàng
+                
+                <a Href="/Order/@UserID" class="text-light ">
+                    <i class="fa-solid fa-book"></i>
+                    Đơn Hàng
+                </a>
             </MudItem>
             <MudItem Class="container">
                 <a Href="/cart" class="text-light ">
@@ -62,9 +65,11 @@
 
 @code {
     private string storedValue;
+    private string UserID;
 
     protected override async Task OnInitializedAsync()
     {
         storedValue = await localStorage.GetItemAsync<string>("userName");
+        UserID = await localStorage.GetItemAsync<string>("userId");
     }
 }
