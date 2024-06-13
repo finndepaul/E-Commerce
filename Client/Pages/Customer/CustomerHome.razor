@@ -61,7 +61,7 @@
 
 <MudContainer Style="background-color:rgba(89,74,226,1)" Class="container d-flex btn d-flex justify-content-around align-items-center mt-2">
     <MudContainer>
-        <MudTextField Class="bg-light" Style="width:100%;height:90%" T="String" Placeholder="  Tìm kiếm ...."></MudTextField>
+        <MudTextField TextChanged="@HandleTextChanged" Class="bg-light" Style="width:100%;height:90%" T="String" Placeholder="  Tìm kiếm ...."></MudTextField>
     </MudContainer>
    
     <MudContainer Style="width:20%">
@@ -143,6 +143,11 @@
     public async Task OnPaginationSelectedChanged(int selectedPage)
     {
         Nop = selectedPage;
+        await Load();
+    }
+    public async Task HandleTextChanged(string newText)
+    {
+        request.NameProduct = newText;
         await Load();
     }
 
