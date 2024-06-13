@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Client.Data;
 using Client.IServices;
 using Client.Services;
@@ -15,7 +16,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddMudServices();
-
+builder.Services.AddBlazoredLocalStorage();
 
 var app = builder.Build();
 
